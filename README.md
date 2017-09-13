@@ -6,7 +6,7 @@ The file profiles/ODM.xmi contains a UML profile for ODM. Before you start model
 
 e.g. in ArgoUML:
 * Launch ArgoUML and go to Edit -> Settings -> Profiles
-* Click on Add and specify your _path to ODM.xmi_/profiles directory.
+* Click on Add and specify your _profiles_ directory.
 
 ODM.xmi provides the following stereotypes
 
@@ -25,4 +25,18 @@ ODM.xmi provides the following data types
 * integer
 * string
 
+## Tests
+These models are provided for testing in ArgoUML .zargo format:
+
+Directory test/testdata:
+* empty.zargo
+* classes and properties.zargo
+
+To run the tests, I recommend you install "green" (pip install green) and "coverage" (pip install coverage)
+To run the test sand get code coverage run:
+
+```
+cd test
+bash test.sh
+```
 

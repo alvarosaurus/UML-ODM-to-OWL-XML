@@ -1,3 +1,4 @@
 .project
 .pydevproject
 *.xmi~
+__pycache__/
