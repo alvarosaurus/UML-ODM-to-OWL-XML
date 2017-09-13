@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8' ?>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Sep 13 11:46:45 CEST 2017'>
+  <XMI.header>    <XMI.documentation>
+      <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
+      <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
+    </XMI.documentation>
+    <XMI.metamodel xmi.name="UML" xmi.version="1.4"/></XMI.header>
+  <XMI.content>
+    <UML:Model xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A5F'
+      name = 'ODM' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+      isAbstract = 'false'>
+      <UML:ModelElement.stereotype>
+        <UML:Stereotype xmi.idref = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A60'/>
+      </UML:ModelElement.stereotype>
+      <UML:Namespace.ownedElement>
+        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A60'
+          name = 'profile' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
+        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61'
+          name = 'owlClass' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62'
+          name = 'owlDataProperty' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Attribute</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A63'
+          name = 'objectProperty' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A64'
+          name = 'owlValue' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A65'
+          name = 'rdfsDomain' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E76'
+          name = 'string' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
+        <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E77'
+          name = 'integer' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
+        <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E78'
+          name = 'date' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
+        <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E79'
+          name = 'double' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
+        <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E7A'
+          name = 'boolean' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+  </XMI.content>
+</XMI>
