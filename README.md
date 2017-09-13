@@ -32,8 +32,8 @@ Directory test/testdata:
 * empty.zargo
 * classes and properties.zargo
 
-To run the tests, I recommend you install "green" (pip install green) and "coverage" (pip install coverage)
-To run the test sand get code coverage run:
+To run the tests, I recommend you install "green" (pip install green) and "coverage" (pip install coverage).
+To run the tests and get code coverage run:
 
 ```
 cd test

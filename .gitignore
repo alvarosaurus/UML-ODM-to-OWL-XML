@@ -1,4 +1,5 @@
 .project
 .pydevproject
 *.xmi~
+*.zargo~
 __pycache__/

@@ -14,7 +14,7 @@ class A_OWLSink():
 	__metaclass__ = ABCMeta
 	
 	@abstractmethod
-	def transform(self, tree):
+	def transform(self, src, profile):
 		"""
 		Transform ODM into OWL
 		
