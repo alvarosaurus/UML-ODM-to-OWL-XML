@@ -27,11 +27,10 @@ class A_OWLSink():
 	
 	
 	@abstractmethod
-	def save(self, path, tree):
+	def save(self, path):
 		"""
-		Serialize and save the tree to a file in XML format
+		Serialize and save the result tree to a file in XML-OWL format
 		
 		@param path: string, path to a file
-		@param tree: etree, parsed OWL after transformation
 		"""
 		raise NotImplementedError

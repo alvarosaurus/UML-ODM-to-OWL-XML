@@ -13,16 +13,19 @@ The Ontology Design Metamodel (ODM) is a UML profile intended for designing onto
 
 ## Prerequisites
 * Python 3.
-* Needed for seeing the documentation and editing the test data: ArgoUML (http://argouml.tigris.org//) 
+* To install the necessary Python packages, do: `pip3 install -r requirements.txt`
+* Needed for seeing the documentation and editing the test data: ArgoUML (http://argouml.tigris.org//)
 
 ## ODM Profile
-The profile proposed here is based (in a derived form) on the work by Gaševic, Djuric and Devedžic (2009) and on the Ontology Definition Metamodel specification (Object Management Group, 2009).
+The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form) on the work by Gaševic, Djuric and Devedžic (2009) and on the Ontology Definition Metamodel specification (Object Management Group, 2009).
 
-The file profiles/ODM.xmi contains a UML profile for ODM. Before you start modelling, you should load the profile in your UML editor. 
+Before you start modelling, you should load the profile in your UML editor. 
 
 e.g. in ArgoUML:
 * Launch ArgoUML and go to Edit -> Settings -> Profiles
 * Click on Add and specify your _profiles_ directory.
+* Close and relaunch ArgoUML and go to Edit -> Settings -> Profiles
+* ArgoUML should have listed the new profile. Add it to the defaults profiles.
 
 ODM.xmi provides the following stereotypes
 
@@ -48,13 +51,18 @@ Directory test/testdata:
 * empty.zargo
 * classes and properties.zargo
 
-To run the tests, I recommend you install "green" (pip install green) and "coverage" (pip install coverage).
+To run the tests, I recommend you install "green" and "coverage", which should be installed if you did `pip3 install -r requirements.txt`.
+
 To run the tests and get code coverage run:
 
 ```
 cd test
 bash test.sh
 ```
+
+## Documentation
+UML diagrams of the software (classes and activities) are in the file docs/ODM2OWL.zargo
+
 
 ## References
 
