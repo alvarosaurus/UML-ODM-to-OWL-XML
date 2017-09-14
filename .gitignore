@@ -3,3 +3,5 @@
 *.xmi~
 *.zargo~
 __pycache__/
+.coverage
+*.pyc

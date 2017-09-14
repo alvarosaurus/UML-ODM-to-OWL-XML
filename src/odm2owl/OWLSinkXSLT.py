@@ -13,19 +13,35 @@ class OWLSinkXSLT( A_OWLSink ):
 	"""
 	
 	## @var template
-	#  an etree of a XSLT template parsed from templatePath
+	#  An XSLT object that can be called to apply the template transformation
 	template = None
+
+	## @var result
+	#  An etree containing the OWL tree gained after applying the XSLT template to the srcTree 
+	result = None
 	
 	def __init__(self, templatePath):
-		self.template = etree.parse( templatePath )
+		"""
+		Load the template and instantiate a XSLT transform object.
 		
+		@param templatePath: string, path to the root XSLT template for this transformation
+		"""
+		xslt = etree.parse( templatePath )
+		self.template = etree.XSLT( xslt )
 	
-	def transform(self, src, profile):
+	
+	def transform( self, srcTree, profileTree, iri ):
 		"""
 		Overrides abstract method
 		Implemented using XSLT templates
 		"""
-		pass
+		# add the ontology's namespace as attribute to the root element of the source tree
+		srcTree.getroot().set('iri', iri)
+		
+		# apply the XSLT template
+		self.result = self.template( srcTree )
+		
+		return self.result
 	
 	
 	def save(self, path, tree):
@@ -33,3 +49,10 @@ class OWLSinkXSLT( A_OWLSink ):
 		Overrides abstract method
 		"""
 		pass
+	
+	
+	def __str__(self):
+		"""
+		String representation of the result tree
+		"""
+		return etree.tostring(self.result.getroot(), pretty_print=True)

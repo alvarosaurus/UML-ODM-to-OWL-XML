@@ -11,6 +11,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 	profilePath = "../profiles/ODM.xmi"
 	testModelPath = "testdata/empty.xmi"
 	templatePath = "../src/odm2owl/templates/owl.xslt"
+	iri = "http://example.org/ontologies/test"
 	
 	# UML profile loaded from profilePath
 	profile = None
@@ -42,7 +43,14 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		Does the XSLT transformation run through, using the empty.xmi test file?
 		"""
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
-		sink.transform( self.source, self.profile )
+		owl = sink.transform( self.source, self.profile, test_OWLSinkXSLT.iri )
+		self.assertFalse( owl is None, "Could not transform file %s using template %s" % ( test_OWLSinkXSLT.testModelPath, test_OWLSinkXSLT.templatePath ) )
+		# check that tree contains OWL
+		root = owl.getroot()
+		self.assertEqual( root.attrib['{http://www.w3.org/XML/1998/namespace}base'], test_OWLSinkXSLT.iri, "Attribute xml:base is not %s" % test_OWLSinkXSLT.iri) 
+		self.assertEqual( root.attrib['ontologyIRI'], test_OWLSinkXSLT.iri, "Attribute ontologyIRI is not %s" % test_OWLSinkXSLT.iri) 
+		
+#		print(owl)
 		
 
 if __name__ == "__main__":

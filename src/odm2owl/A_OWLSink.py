@@ -14,11 +14,13 @@ class A_OWLSink():
 	__metaclass__ = ABCMeta
 	
 	@abstractmethod
-	def transform(self, src, profile):
+	def transform( self, srcTree, profileTree, iri ):
 		"""
 		Transform ODM into OWL
 		
-		@param tree:etree, parsed ODM tree
+		@param srcTree:etree, parsed ODM tree
+		@param profileTree:etree, parsed UML profile tree
+		@param iri:string Ontology IRI
 		@return etree: OWL tree 
 		"""
 		raise NotImplementedError
