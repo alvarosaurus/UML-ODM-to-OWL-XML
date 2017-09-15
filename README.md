@@ -14,18 +14,21 @@ The Ontology Design Metamodel (ODM) is a UML profile intended for designing onto
 ## Prerequisites
 * Python 3.
 * To install the necessary Python packages, do: `pip3 install -r requirements.txt`
-* Needed for seeing the documentation and editing the test data: ArgoUML (http://argouml.tigris.org//)
+* Needed for seeing the documentation and editing the test data: ArgoUML (http://argouml.tigris.org/)
 
 ## ODM Profile
-The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form) on the work by Gaševic, Djuric and Devedžic (2009) and on the Ontology Definition Metamodel specification (Object Management Group, 2009).
+The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form) 
+on the work by Gaševic, Djuric and Devedžic (2009) and on 
+the Ontology Definition Metamodel specification (Object Management Group, 2009).
 
 Before you start modelling, you should load the profile in your UML editor. 
 
 e.g. in ArgoUML:
-* Launch ArgoUML and go to Edit -> Settings -> Profiles
+* Launch ArgoUML and go to Edit -> Settings -> Profiles (on OSX, this is ArgoUML -> Preferences -> Profiles)
 * Click on Add and specify your _profiles_ directory.
-* Close and relaunch ArgoUML and go to Edit -> Settings -> Profiles
+* Click on "refresh list" (or close and relaunch ArgoUML and go back to Edit -> Settings -> Profiles)
 * ArgoUML should have listed the new profile. Add it to the defaults profiles.
+* You can now load one of the test ontologies provided in test/testdata/*.zargo
 
 ODM.xmi provides the following stereotypes
 

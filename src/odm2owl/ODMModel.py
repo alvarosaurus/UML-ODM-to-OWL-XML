@@ -23,7 +23,6 @@ class ODMModel():
 	#  etree, a UML profile for describing ODM
 	profile = None
 
-
 	## @var profileDict
 	#  Dictionary of stereotypes parsed from the profile
 	profileDict = None
@@ -46,12 +45,18 @@ class ODMModel():
 		
 
 	def _parseStereotypes(self):
-		# get the namespace
+		"""
+		Parse the UML profile (profiles/ODM.xmi) and make a dictionary of stereotypes
+		where the keys are the stereotype names and the values are the stereotype xmi.id's
+		"""
+		# get the UML namespace
 		umlNs = self.profile.getroot().nsmap['UML']
 		
+		# find all stereotype elements in the ODM profile
 		qualifiedTag = ".//{{{0}}}Stereotype".format(umlNs)
 		stpList = self.profile.getroot().findall(qualifiedTag)
-		
+
+		# build a dictionary		
 		stereotypes = {}
 		for s in stpList:
 			stereotypes[s.attrib.get('name')] = s.attrib.get('xmi.id')
