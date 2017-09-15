@@ -26,8 +26,16 @@
 	</xsl:template>
 
 	<xsl:template match="UML:Class">
+		<xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
 		<Declaration>
- 			<Class IRI="#{@name}"/>
+			<xsl:choose>
+				<xsl:when test="$xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61'">
+ 					<owlClass IRI="#{@name}"/>
+ 				</xsl:when>
+ 				<xsl:otherwise>
+	 				<anotherClass IRI="#{@name}"/>
+ 				</xsl:otherwise>
+			</xsl:choose>
 		</Declaration>		
 	</xsl:template>
 

@@ -3,6 +3,7 @@ Created on 15 Sep 2017
 
 @author: Alvaro Ortiz
 '''
+from lxml import etree
 
 class ODMModel():
 	"""
@@ -22,6 +23,10 @@ class ODMModel():
 	#  etree, a UML profile for describing ODM
 	profile = None
 
+
+	## @var profileDict
+	#  Dictionary of stereotypes parsed from the profile
+	profileDict = None
 	
 	def __init__(self, iri, ontology, profile):
 		"""
@@ -35,3 +40,20 @@ class ODMModel():
 		
 		# add the ontology's namespace as attribute to the root element of the source tree
 		self.ontology.getroot().set('iri', self.iri)
+
+		# parse the stereotypes in the ODM profile into a dictionary
+		self.stereotypes = self._parseStereotypes()
+		
+
+	def _parseStereotypes(self):
+		# get the namespace
+		umlNs = self.profile.getroot().nsmap['UML']
+		
+		qualifiedTag = ".//{{{0}}}Stereotype".format(umlNs)
+		stpList = self.profile.getroot().findall(qualifiedTag)
+		
+		stereotypes = {}
+		for s in stpList:
+			stereotypes[s.attrib.get('name')] = s.attrib.get('xmi.id')
+		
+		return stereotypes

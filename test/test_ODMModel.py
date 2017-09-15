@@ -43,6 +43,21 @@ class test_ODMModel(unittest.TestCase):
 		self.assertEqual( prRoot.tag, "XMI", "Root element of profile is not XMI")
 
 
+	def test_parseProfile(self):
+		"""
+		Is the ODM profile being parsed to a Python dictionary?
+		"""
+		ontology = etree.parse(test_ODMModel.modelPath)
+		profile = etree.parse(test_ODMModel.profilePath)
+		model = ODMModel(test_ODMModel.iri, ontology, profile)
+		
+		# get the xmi.id of some stereotypes
+		name = 'owlClass'
+		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61', model.stereotypes[name], "Wrong xmi.id for stereotype %s" % name)
+		name = 'owlDataProperty'
+		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62', model.stereotypes[name], "Wrong xmi.id for stereotype %s" % name)
+		
+
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.testName']
 	unittest.main()
