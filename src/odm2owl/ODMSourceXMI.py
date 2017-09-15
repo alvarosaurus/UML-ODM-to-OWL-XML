@@ -5,6 +5,7 @@ Created on 13 Sep 2017
 '''
 from lxml import etree
 from odm2owl.A_ODMSource import A_ODMSource
+from odm2owl.ODMModel import ODMModel
 
 class ODMSourceXMI(A_ODMSource):
 	"""
@@ -13,32 +14,18 @@ class ODMSourceXMI(A_ODMSource):
 	1. read a UML profile stored as XMI
 	2. read a UML file stored as XMI containing an ontology in UML that uses the ODM profile
 	""" 
-	
-	## @var profile
-	#  a UML profile as read from a XMI
-	profile = None
-	
+		
 	## @var model
-	#  a UML file stored as XMI containing an ontology in UML that uses the ODM profile
+	#  a ODMModel object for storing the parsed ontology and profile
 	model = None
 	
-	def __init__(self):
-		pass
-	
-	
-	def loadProfile( self, path ):
+	def loadModel( self, iri, modelPath, profilePath ):
 		"""
 		Overrides abstract method
 		"""
-		self.profile = etree.parse( path )		
-		return self.profile
-	
-	
-	def loadModel( self, path, profile ):
-		"""
-		Overrides abstract method
-		"""
-		self.model = etree.parse(path)
+		ontology = etree.parse(modelPath)
+		profile = etree.parse(profilePath)
+		self.model = ODMModel( iri, ontology, profile )
 		return self.model
 	
 	

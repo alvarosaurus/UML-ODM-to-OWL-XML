@@ -11,10 +11,11 @@ class OWLSinkXSLT( A_OWLSink ):
 	A class that transforms a UML-ODM tree representing ann ontology into a OWL tree
 	and saves it to a OWL-XML file. The transformation is implemented in an XSLT template.
 	"""
-	
+		
 	## @var template
 	#  An etree.XSLT object that can be called to apply the template transformation
 	template = None
+	
 
 	## @var result
 	#  An etree containing the OWL tree gained after applying the XSLT template to the srcTree 
@@ -31,16 +32,14 @@ class OWLSinkXSLT( A_OWLSink ):
 		self.template = etree.XSLT( xslt )
 	
 	
-	def transform( self, srcTree, profileTree, iri ):
+	def transform( self, model ):
 		"""
 		Overrides abstract method
 		Implemented using XSLT templates
 		"""
-		# add the ontology's namespace as attribute to the root element of the source tree
-		srcTree.getroot().set('iri', iri)
 		
 		# apply the XSLT template
-		self.result = self.template( srcTree )
+		self.result = self.template( model.ontology )
 		
 		return self.result
 	

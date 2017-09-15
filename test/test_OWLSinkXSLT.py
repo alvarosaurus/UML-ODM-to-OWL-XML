@@ -9,20 +9,16 @@ from odm2owl.OWLSinkXSLT import OWLSinkXSLT
 from odm2owl.ODMSourceXMI import ODMSourceXMI
 
 class test_OWLSinkXSLT(unittest.TestCase):
+	
 	profilePath = "../profiles/ODM.xmi"
 	emptyModelPath = "testdata/empty.xmi"
 	classesModelPath = "testdata/classes_and_properties.xmi"
-	templatePath = "../src/odm2owl/templates/owl.xslt"
 	iri = "http://example.org/ontologies/test"
+	templatePath = "../src/odm2owl/templates/owl.xslt"
 	savePath = "/tmp/test.owl"
 	
-	# UML profile loaded from profilePath
-	profile = None
-	
 	def setUp(self):
-		# Load a profile and a model for testing
-		src = ODMSourceXMI()
-		self.profile = src.loadProfile( test_OWLSinkXSLT.profilePath )
+		pass
 
 
 	def tearDown(self):
@@ -44,11 +40,11 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		Does the XSLT transformation run through, using the empty.xmi test file?
 		"""
 		# load a ODM model (empty model)
-		source = ODMSourceXMI().loadModel( test_OWLSinkXSLT.emptyModelPath, self.profile )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.emptyModelPath, self.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
-		owl = sink.transform( source, self.profile, test_OWLSinkXSLT.iri )
+		owl = sink.transform( model )
 		
 		# check that programs runs this far
 		self.assertFalse( owl is None, "Could not transform file %s using template %s" % ( test_OWLSinkXSLT.emptyModelPath, test_OWLSinkXSLT.templatePath ) )
@@ -67,11 +63,11 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		Are all classes and properties present in the OWL tree after transforming the test file?
 		"""
 		# load a ODM model (classes and properties model)
-		source = ODMSourceXMI().loadModel( test_OWLSinkXSLT.classesModelPath, self.profile )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
-		owl = sink.transform( source, self.profile, test_OWLSinkXSLT.iri )
+		owl = sink.transform( model )
 		print(owl)
 		# check that tree contains all classes
 #		root = owl.getroot()
@@ -83,11 +79,11 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		Can the OWL file be saved?
 		"""
 		# load a ODM model (classes and properties model)
-		source = ODMSourceXMI().loadModel( test_OWLSinkXSLT.classesModelPath, self.profile )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
-		sink.transform( source, self.profile, test_OWLSinkXSLT.iri )
+		sink.transform( model )
 		
 		# delete the saved OWL file if present
 		if os.path.isfile(test_OWLSinkXSLT.savePath):

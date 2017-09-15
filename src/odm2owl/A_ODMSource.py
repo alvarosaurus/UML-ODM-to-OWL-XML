@@ -11,29 +11,18 @@ class A_ODMSource:
 	An implementation is provided in ODMSourceXMI.py
 	"""
 
-	__metaclass__ = ABCMeta
-	
-	@abstractmethod
-	def loadProfile(self, path):
-		"""
-		Load a UML profile from file.
-		The file should contain a ODM profile with the ids of data types and stereotypes (see README.-md)
-		
-		@param path: string, path to a file (e.g. profile/ODM.xmi) 
-		@return etree: a parsed representation of the profile
-		"""
-		raise NotImplementedError
-	
+	__metaclass__ = ABCMeta	
 
 	@abstractmethod
-	def loadModel(self, path, profile): 
+	def loadModel(self, iri, modelPath, profilePath): 
 		"""
 		Load a file in XMI format, containing a UML model.
 		The model should comply to the ODM profile.
 		
-		@param path: string, path to a file 
-		@param profile: etree, parsed UML profile for ODM
-		@return etree: a parsed representation of the profile
+		@param iri:string, namespace iri for this ontology
+		@param modelPath: string, path to a file containing the ontology in ODM format
+		@param profilePath: string, epath to a file containing the UML profile for ODM
+		@return ODMModel: an object containing a parsed representation of the ontology and UML profile
 		"""
 		raise NotImplementedError
 	

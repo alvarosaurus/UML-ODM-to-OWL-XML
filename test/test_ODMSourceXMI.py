@@ -13,6 +13,7 @@ from odm2owl.ODMSourceXMI import ODMSourceXMI
 class test_ODMSourceXMI(unittest.TestCase):
 	profilePath = "../profiles/ODM.xmi"
 	testModelPath = "testdata/empty.xmi"
+	iri = "http://example.org/ontologies/test"
 
 	def setUp(self):
 		pass
@@ -30,26 +31,12 @@ class test_ODMSourceXMI(unittest.TestCase):
 		self.assertFalse( src is None, "Could not create ODMSourceXMI object")
 
 
-	def test_loafProfile(self):
-		"""
-		Can a UML profile stored in a XMI file be loaded?
-		"""
-		src = ODMSourceXMI()
-		profile = src.loadProfile( test_ODMSourceXMI.profilePath )
-		self.assertFalse( profile is None, "Could not parse XMI file %s" % test_ODMSourceXMI.profilePath )
-		# check that tree contains XMI
-		root = profile.getroot()
-		self.assertEqual( root.tag, "XMI", "Root element is not XMI")
-		self.assertEqual( root.nsmap['UML'], 'org.omg.xmi.namespace.UML', "Namespace is not XMI" ) 
-
-
 	def test_loadModel(self):
 		"""
 		Can a UML model stored in a XMI file be loaded?
 		"""
 		src = ODMSourceXMI()
-		profile = src.loadProfile( test_ODMSourceXMI.profilePath )
-		model = src.loadModel( test_ODMSourceXMI.testModelPath, profile )
+		model = src.loadModel( test_ODMSourceXMI.iri, test_ODMSourceXMI.testModelPath, test_ODMSourceXMI.profilePath )
 		self.assertFalse( model is None, "Could not parse XMI file %s" % test_ODMSourceXMI.testModelPath )
 		
 
