@@ -23,8 +23,9 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
 	def tearDown(self):
 		# delete the saved OWL file if present
-		if os.path.isfile(test_OWLSinkXSLT.savePath):
-			os.remove(test_OWLSinkXSLT.savePath)
+		pass
+#		if os.path.isfile(test_OWLSinkXSLT.savePath):
+#			os.remove(test_OWLSinkXSLT.savePath)
 
 
 	def test_create(self):
@@ -85,18 +86,6 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		self.assertEqual( 1, len(owl.findall('/Declaration/ObjectProperty')), "Wrong number of object properties")
 
 		
-	def test_DataProperties(self):
-		# load a ODM model (classes and properties model)
-		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
-		
-		# instantiate OWLSink object and apply transformation
-		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
-		owl = sink.transform( model )
-
-		# check that the OWLtree contains all data properties
-		self.assertEqual( 3, len(owl.findall('/Declaration/DataProperty')), "Wrong number of data properties")
-
-
 	def test_ObjectPropertiesDomainsAndRanges(self):
 		"""
 		Are all domains and ranges of object properties correct?
@@ -111,7 +100,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		
 		# check that the OWLtree contains all ObjectPropertyDomains
 		self.assertEqual( 1, len(owl.findall('//ObjectPropertyDomain')), "Wrong number of object property domains")
-		# check that ObjectPropertyDomains point to the correct Domain
+		# check that ObjectPropertyDomains point to the correct Class
 		self.assertEqual( "#hasProperty", owl.xpath('//ObjectPropertyDomain/ObjectProperty/@IRI')[0], "Wrong class for object property hasProperty")
 		# check that ObjectPropertyDomains point to the correct Domain
 		self.assertEqual( "#TestClass_1", owl.xpath('//ObjectPropertyDomain/Class/@IRI')[0], "Wrong domain for object property hasProperty")
@@ -122,7 +111,46 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		self.assertEqual( "#hasProperty", owl.xpath('//ObjectPropertyRange/ObjectProperty/@IRI')[0], "Wrong class for object property hasProperty")
 		# check that ObjectPropertyDomains point to the correct Domain
 		self.assertEqual( "#TestClass_2", owl.xpath('//ObjectPropertyRange/Class/@IRI')[0], "Wrong domain for object property hasProperty")
+
+	
+	def test_DataProperties(self):
+		# load a ODM model (classes and properties model)
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
 		
+		# instantiate OWLSink object and apply transformation
+		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
+		owl = sink.transform( model )
+
+		# check that the OWLtree contains all data properties
+		self.assertEqual( 3, len(owl.findall('/Declaration/DataProperty')), "Wrong number of data properties")
+
+
+	def test_DataPropertiesDomainsAndRanges(self):
+		# load a ODM model (classes and properties model)
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
+		
+		# instantiate OWLSink object and apply transformation
+		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
+		owl = sink.transform( model )
+		
+		# check that the OWLtree contains all DataPropertyDomains
+		self.assertEqual( 3, len(owl.findall('//DataPropertyDomain')), "Wrong number of data property domains")
+		# check that DataPropertyDomains point to the correct Class
+		self.assertEqual( 2, len( owl.xpath("//DataPropertyDomain/Class[@IRI='#TestClass_1']") ), "Wrong class for data property")
+		# check that DataPropertyDomains point to the correct Class
+		self.assertEqual( 1, len( owl.xpath("//DataPropertyDomain/Class[@IRI='#TestClass_2']") ), "Wrong class for data property")
+		# check that ObjectPropertyDomains point to the correct Domain
+		self.assertTrue( owl.xpath("//DataPropertyDomain/DataProperty[@IRI='#attribute_1']"), "Wrong domain for data property")
+		self.assertTrue( owl.xpath("//DataPropertyDomain/DataProperty[@IRI='#attribute_2']"), "Wrong domain for data property hasProperty")
+		self.assertTrue( owl.xpath("//DataPropertyDomain/DataProperty[@IRI='#attribute_3']"), "Wrong domain for data property hasProperty")
+		
+		# check that the OWLtree contains all DataPropertyRanges
+		self.assertEqual( 3, len(owl.findall('//DataPropertyRange')), "Wrong number of data property ranges")
+		# check that the OWLtree contains all DataPropertyRange types
+		self.assertTrue( owl.xpath("//DataPropertyRange/Datatype[@abbreviatedIRI='xsd:integer']"), "Wrong range for data property")
+		self.assertTrue( owl.xpath("//DataPropertyRange/Datatype[@abbreviatedIRI='xsd:string']"), "Wrong range for data property")
+		self.assertTrue( owl.xpath("//DataPropertyRange/Datatype[@abbreviatedIRI='xsd:dateTime']"), "Wrong range for data property")
+
 
 	def test_save(self):
 		"""
