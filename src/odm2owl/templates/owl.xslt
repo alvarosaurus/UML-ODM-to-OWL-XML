@@ -51,21 +51,34 @@
 	<!-- Transform UML AssociationClass into OWL ObjectProperty -->
 	<xsl:template match="UML:AssociationClass">
 		<xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
+		<xsl:variable name="domain.idref" select="UML:Classifier.feature/UML:Attribute[@name='domain']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
+		<xsl:variable name="range.idref" select="UML:Classifier.feature/UML:Attribute[@name='range']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
 		
 		<xsl:if test="$xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A63'">
 			<Declaration>
 				<ObjectProperty IRI="#{@name}"/>
 			</Declaration>
+			
+		    <ObjectPropertyDomain>
+		        <ObjectProperty IRI="#{@name}"/>
+		        <Class IRI="#{//UML:Class[@xmi.id=$domain.idref]/@name}"/>
+		    </ObjectPropertyDomain>
+		    
+		    <ObjectPropertyRange>
+		        <ObjectProperty IRI="#{@name}"/>
+		        <Class IRI="#{//UML:Class[@xmi.id=$range.idref]/@name}"/>
+		    </ObjectPropertyRange>
+		    
 		</xsl:if>
 		
 	</xsl:template>
 
 
-	<!-- DataProperty -->
+	<!-- Transform UML Attribute into DataProperty -->
 	<xsl:template match="UML:Attribute">
 		<Declaration>
 			<DataProperty IRI="#{@name}"/>
-		</Declaration>		
+		</Declaration>
 	</xsl:template>
 
 
@@ -78,7 +91,7 @@
 		    <ObjectPropertyDomain>
 				<ObjectProperty IRI="#{$idref}"/>
         		<Class IRI=""/>
-			</ObjectPropertyDomain>	
+			</ObjectPropertyDomain>
 		</xsl:if>
 
 	</xsl:template>

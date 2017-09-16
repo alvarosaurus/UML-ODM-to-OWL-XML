@@ -63,56 +63,65 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		Are all classes and (object- and data-) properties present in the OWL tree after transforming the test file?
 		"""
 		# load a ODM model (classes and properties model)
-		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
 		owl = sink.transform( model )
 		
 		# check that the OWLtree contains all classes
-		self.assertEqual( 2, len(owl.findall('//Class')), "Wrong number of classes")
+		self.assertEqual( 2, len(owl.findall('/Declaration/Class')), "Wrong number of classes")
 
 		
 	def test_ObjectProperties(self):
 		# load a ODM model (classes and properties model)
-		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
 		owl = sink.transform( model )
 		
 		# check that the OWLtree contains all object properties
-		self.assertEqual( 1, len(owl.findall('//ObjectProperty')), "Wrong number of object properties")
+		self.assertEqual( 1, len(owl.findall('/Declaration/ObjectProperty')), "Wrong number of object properties")
 
 		
 	def test_DataProperties(self):
 		# load a ODM model (classes and properties model)
-		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
 		owl = sink.transform( model )
 
 		# check that the OWLtree contains all data properties
-		self.assertEqual( 3, len(owl.findall('//DataProperty')), "Wrong number of data properties")
+		self.assertEqual( 3, len(owl.findall('/Declaration/DataProperty')), "Wrong number of data properties")
 
 
-	@unittest.skip("changed the model for ObjectPropertyDomain")
-	def test_domainsAndRanges(self):
+	def test_ObjectPropertiesDomainsAndRanges(self):
 		"""
-		Are all domains and ranges of object- and data- properties correct?
+		Are all domains and ranges of object properties correct?
 		"""
 				
 		# load a ODM model (classes and properties model)
-		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
 		owl = sink.transform( model )
-		print(owl)
 		
 		# check that the OWLtree contains all ObjectPropertyDomains
-		self.assertEqual( 2, len(owl.findall('//ObjectPropertyDomain')), "Wrong number of object property domains")
+		self.assertEqual( 1, len(owl.findall('//ObjectPropertyDomain')), "Wrong number of object property domains")
+		# check that ObjectPropertyDomains point to the correct Domain
+		self.assertEqual( "#hasProperty", owl.xpath('//ObjectPropertyDomain/ObjectProperty/@IRI')[0], "Wrong class for object property hasProperty")
+		# check that ObjectPropertyDomains point to the correct Domain
+		self.assertEqual( "#TestClass_1", owl.xpath('//ObjectPropertyDomain/Class/@IRI')[0], "Wrong domain for object property hasProperty")
+		
+		# check that the OWLtree contains all ObjectPropertyRanges
+		self.assertEqual( 1, len(owl.findall('//ObjectPropertyRange')), "Wrong number of object property ranges")
+		# check that ObjectPropertyDomains point to the correct Range
+		self.assertEqual( "#hasProperty", owl.xpath('//ObjectPropertyRange/ObjectProperty/@IRI')[0], "Wrong class for object property hasProperty")
+		# check that ObjectPropertyDomains point to the correct Domain
+		self.assertEqual( "#TestClass_2", owl.xpath('//ObjectPropertyRange/Class/@IRI')[0], "Wrong domain for object property hasProperty")
 		
 
 	def test_save(self):
@@ -120,7 +129,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		Can the OWL file be saved?
 		"""
 		# load a ODM model (classes and properties model)
-		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, self.profilePath )
+		model = ODMSourceXMI().loadModel( test_OWLSinkXSLT.iri, test_OWLSinkXSLT.classesModelPath, test_OWLSinkXSLT.profilePath )
 		
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
