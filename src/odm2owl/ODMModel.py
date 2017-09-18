@@ -42,6 +42,10 @@ class ODMModel():
 
 		# parse the stereotypes in the ODM profile into a dictionary
 		self.stereotypes = self._parseStereotypes()
+		self._addRootAttribute(self.stereotypes)
+		# parse the datatypes in the ODM profile into a dictionary
+		self.datatypes = self._parseDatatypes()
+		self._addRootAttribute(self.datatypes)
 		
 
 	def _parseStereotypes(self):
@@ -56,9 +60,39 @@ class ODMModel():
 		qualifiedTag = ".//{{{0}}}Stereotype".format(umlNs)
 		stpList = self.profile.getroot().findall(qualifiedTag)
 
-		# build a dictionary		
+		# build a dictionary
 		stereotypes = {}
 		for s in stpList:
 			stereotypes[s.attrib.get('name')] = s.attrib.get('xmi.id')
 		
 		return stereotypes
+
+	
+	def _parseDatatypes(self):
+		"""
+		Parse the UML profile (profiles/ODM.xmi) and make a dictionary of datatypes
+		where the keys are the datatype names and the values are the datatype xmi.id's
+		"""
+		# get the UML namespace
+		umlNs = self.profile.getroot().nsmap['UML']
+		
+		# find all stereotype elements in the ODM profile
+		qualifiedTag = ".//{{{0}}}DataType".format(umlNs)
+		dtpList = self.profile.getroot().findall(qualifiedTag)
+
+		# build a dictionary
+		datatypes = {}
+		for d in dtpList:
+			datatypes[d.attrib.get('name')] = d.attrib.get('xmi.id')
+		
+		return datatypes
+
+		
+	def _addRootAttribute(self, dictionary):
+		"""
+		Add a dictionary (stereotypes, datatypes) to the ontology as attributes of the root element
+		"""
+		for key,value in dictionary.items():
+			if (key is not None):
+				self.ontology.getroot().set( key, value )
+

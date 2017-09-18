@@ -132,6 +132,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 		# instantiate OWLSink object and apply transformation
 		sink = OWLSinkXSLT( test_OWLSinkXSLT.templatePath )
 		owl = sink.transform( model )
+		#print(owl)
 		
 		# check that the OWLtree contains all DataPropertyDomains
 		self.assertEqual( 3, len(owl.findall('//DataPropertyDomain')), "Wrong number of data property domains")

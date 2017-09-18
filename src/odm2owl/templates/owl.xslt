@@ -5,7 +5,18 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:UML = 'org.omg.xmi.namespace.UML'
 >
+	<!-- Define stereotypes as global variables -->
+	<xsl:variable name="owlClass" select="/XMI/@owlClass" />
+	<xsl:variable name="objectProperty" select="/XMI/@objectProperty" />
 	
+	<!-- Define datatypes as global variables -->
+	<xsl:variable name="stringType" select="/XMI/@string" />
+	<xsl:variable name="integerType" select="/XMI/@integer" />
+	<xsl:variable name="dateType" select="/XMI/@date" />
+	<xsl:variable name="doubleType" select="/XMI/@double" />
+	<xsl:variable name="booleanType" select="/XMI/@boolean" />
+	
+	<!-- Match the root element -->
 	<xsl:template match="/XMI">
 		<Ontology xmlns="http://www.w3.org/2002/07/owl#"
 		     xml:base="{@iri}"
@@ -38,7 +49,7 @@
 	<xsl:template match="UML:Class">
 		<xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
 		
-		<xsl:if test="$xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61'">
+		<xsl:if test="$xmi.id = $owlClass">
 			<Declaration>
 				<Class IRI="#{@name}"/>
 			</Declaration>
@@ -58,7 +69,7 @@
 		<!-- Reference to the range class -->
 		<xsl:variable name="range.idref" select="UML:Classifier.feature/UML:Attribute[@name='range']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
 		
-		<xsl:if test="$xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A63'">
+		<xsl:if test="$xmi.id = $objectProperty">
 			<Declaration>
 				<ObjectProperty IRI="#{@name}"/>
 			</Declaration>
@@ -96,19 +107,19 @@
 	    <DataPropertyRange>
 	        <DataProperty IRI="#{@name}"/>
 	        <xsl:choose>
-	        	<xsl:when test="$datatype.href='127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E76'">
+	        	<xsl:when test="$datatype.href=$stringType">
 			        <Datatype abbreviatedIRI="xsd:string"/>
 			    </xsl:when>
-	        	<xsl:when test="$datatype.href='127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E77'">
+	        	<xsl:when test="$datatype.href=$integerType">
 			        <Datatype abbreviatedIRI="xsd:integer"/>
 			    </xsl:when>
-	        	<xsl:when test="$datatype.href='127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E78'">
+	        	<xsl:when test="$datatype.href=$dateType">
 			        <Datatype abbreviatedIRI="xsd:dateTime"/>
 			    </xsl:when>
-	        	<xsl:when test="$datatype.href='127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E79'">
+	        	<xsl:when test="$datatype.href=$doubleType">
 			        <Datatype abbreviatedIRI="xsd:double"/>
 			    </xsl:when>
-	        	<xsl:when test="$datatype.href='127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E7A'">
+	        	<xsl:when test="$datatype.href=$booleanType">
 			        <Datatype abbreviatedIRI="xsd:boolean"/>
 			    </xsl:when>
 	        </xsl:choose>

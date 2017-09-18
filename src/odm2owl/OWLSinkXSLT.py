@@ -55,6 +55,6 @@ class OWLSinkXSLT( A_OWLSink ):
 	def __repr__(self):
 		"""
 		String representation of the result tree,
-		used for saving the resul to a file
+		used for saving the result to a file
 		"""
 		return etree.tostring(self.result.getroot(), pretty_print=True).decode("utf-8")

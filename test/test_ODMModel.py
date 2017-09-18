@@ -43,9 +43,9 @@ class test_ODMModel(unittest.TestCase):
 		self.assertEqual( prRoot.tag, "XMI", "Root element of profile is not XMI")
 
 
-	def test_parseProfile(self):
+	def test_parseStereotypes(self):
 		"""
-		Is the ODM profile being parsed to a Python dictionary?
+		Are the stereotypes in the ODM profile being parsed to a Python dictionary?
 		"""
 		ontology = etree.parse(test_ODMModel.modelPath)
 		profile = etree.parse(test_ODMModel.profilePath)
@@ -56,6 +56,35 @@ class test_ODMModel(unittest.TestCase):
 		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61', model.stereotypes[name], "Wrong xmi.id for stereotype %s" % name)
 		name = 'owlDataProperty'
 		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62', model.stereotypes[name], "Wrong xmi.id for stereotype %s" % name)
+		
+
+	def test_parseDatatypes(self):
+		"""
+		Are the datatypes in the ODM profile being parsed to a Python dictionary?
+		"""
+		ontology = etree.parse(test_ODMModel.modelPath)
+		profile = etree.parse(test_ODMModel.profilePath)
+		model = ODMModel(test_ODMModel.iri, ontology, profile)
+		#print(etree.tostring(model.ontology, pretty_print=True).decode("utf-8") )
+		
+		# get the xmi.id of some stereotypes
+		name = 'string'
+		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E76', model.datatypes[name], "Wrong xmi.id for datatype %s" % name)
+		name = 'integer'
+		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E77', model.datatypes[name], "Wrong xmi.id for datatype %s" % name)
+	
+	
+	def test_addStereotypes(self):
+		"""
+		Are stereotypes from the profile being added to the model as attributes to the root element?
+		"""
+		ontology = etree.parse(test_ODMModel.modelPath)
+		profile = etree.parse(test_ODMModel.profilePath)
+		model = ODMModel(test_ODMModel.iri, ontology, profile)
+
+		# check that some attributes have been set
+		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61', model.ontology.getroot().get('owlClass'), "Wrong value for attribute owlClass")
+		self.assertEqual('127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62', model.ontology.getroot().get('owlDataProperty'), "Wrong value for attribute owlDataProperty")
 		
 
 if __name__ == "__main__":
