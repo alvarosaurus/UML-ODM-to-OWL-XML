@@ -39,11 +39,11 @@ class test_ODMSourceXMI(unittest.TestCase):
             test_ODMSourceXMI.iri,
             test_ODMSourceXMI.testModelPath,
             test_ODMSourceXMI.profilePath
-        )
+            )
         self.assertFalse(
             model is None,
             "Could not parse XMI file %s" % test_ODMSourceXMI.testModelPath
-        )
+            )
 
 
 if __name__ == "__main__":
