@@ -5,8 +5,11 @@ Created on 19 Sep 2017
 
 @author: Alvaro Ortiz Troncoso
 """
-from odm2owl.ODMSourceXMI import ODMSourceXMI
 import zipfile
+import os
+import uuid
+import shutil
+from odm2owl.ODMSourceXMI import ODMSourceXMI
 
 
 class ZargoSource(ODMSourceXMI):
@@ -17,15 +20,33 @@ class ZargoSource(ODMSourceXMI):
     (along with other files)
     """
 
-    def __init__(self, tmpFolder="/tmp"):
-        """Initilaize the class, with a folder to store temporary files.
+    def __init__(self, tmpDir="/tmp"):
+        """Initilaize the class, with a directory to store temporary files.
 
-        @param tmpFolder: string, path to folder to store temporary files.
+        @param tmpDir: string, path to directory to store temporary files.
         """
-        self.tmpFolder = tmpFolder
+        # create a subdirectory with a unique name
+        self.dirName = uuid.uuid4().hex
+        self.tmpDir = tmpDir
 
     def loadModel(self, iri, modelPath, profilePath):
         """Override method in superclass."""
-        # unzip the zargo files
-        with zipfile.ZipFile(modelPath, 'r') as zip:
-            zip.extractall(self.tmpFolder)
+        try:
+            # create a subdirectory with a unique name
+            extractDir = os.path.join(self.tmpDir, self.dirName)
+            os.mkdir(extractDir)
+
+            # unzip the zargo files
+            with zipfile.ZipFile(modelPath, 'r') as zip:
+                zip.extractall(extractDir)
+
+            # path to the xmi file extracted from the zargo file
+            xmiFileName = "{}.xmi".format(os.path.splitext(os.path.basename(modelPath))[0])
+            xmiFilePath = os.path.join(extractDir, xmiFileName)
+
+            # call the parent method
+            model = super(ZargoSource, self).loadModel(iri, xmiFilePath, profilePath)
+            return(model)
+
+        finally:
+            shutil.rmtree(extractDir)

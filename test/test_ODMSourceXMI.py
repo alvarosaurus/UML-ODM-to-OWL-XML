@@ -30,7 +30,7 @@ class test_ODMSourceXMI(unittest.TestCase):
 
     def test_loadModel(self):
         """
-        Test parse n ODM source into a model object.
+        Test parse an ODM source into a model object.
 
         Can a UML model stored in a XMI file be loaded?
         """
