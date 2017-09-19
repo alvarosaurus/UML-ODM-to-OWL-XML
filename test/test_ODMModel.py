@@ -55,13 +55,13 @@ class test_ODMModel(unittest.TestCase):
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61',
             model.stereotypes[name], "Wrong xmi.id for stereotype %s" % name
-        )
+            )
         name = 'owlDataProperty'
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
             model.stereotypes[name],
             "Wrong xmi.id for stereotype %s" % name
-        )
+            )
 
     def test_parseDatatypes(self):
         """
@@ -80,13 +80,13 @@ class test_ODMModel(unittest.TestCase):
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E76',
             model.datatypes[name],
             "Wrong xmi.id for datatype %s" % name
-        )
+            )
         name = 'integer'
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E77',
             model.datatypes[name],
             "Wrong xmi.id for datatype %s" % name
-        )
+            )
 
     def test_addStereotypes(self):
         """
@@ -104,12 +104,12 @@ class test_ODMModel(unittest.TestCase):
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61',
             model.ontology.getroot().get('owlClass'),
             "Wrong value for attribute owlClass"
-        )
+            )
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
             model.ontology.getroot().get('owlDataProperty'),
             "Wrong value for attribute owlDataProperty"
-        )
+            )
 
 
 if __name__ == "__main__":

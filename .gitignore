@@ -5,3 +5,4 @@
 __pycache__/
 .coverage
 *.pyc
+test/testdata/catalog-v001.xml

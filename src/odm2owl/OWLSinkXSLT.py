@@ -54,6 +54,4 @@ class OWLSinkXSLT(A_OWLSink):
 
         Used for saving the result to a file.
         """
-        return etree.tostring(
-            self.result.getroot(), pretty_print=True
-        ).decode("utf-8")
+        return etree.tostring(self.result.getroot(), pretty_print=True).decode("utf-8")
