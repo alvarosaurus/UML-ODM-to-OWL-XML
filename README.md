@@ -5,7 +5,7 @@ A script that converts UML Ontology Definition Metamodel (ODM) files into XML We
 Ontologies are abstract representations of specific domains of the real world: these representations are constructed by naming relevant concepts and identifying the constraints that rule their use; as ontologies embody shared human knowledge in a machine-readable format, they are the cornerstones of knowledge- management and retrieval (Studer, Benjamins and Fensel, 1998).
 
 UML (unified modelling language) provides a set of standardized diagrammatic notations to conceptualize a system design.
-UML can be extended through "profiles", allowing to customize basic UML notations for specific tasks. 
+UML can be extended through "profiles", allowing to customize basic UML notations for specific tasks.
 Profiles consist mainly of a collection of "stereotypes", used to tag UML elements, allowing to apply specific constraints to these elements.
 
 The Ontology Design Metamodel (ODM) is a UML profile intended for designing ontologies. An ontology can be modelled in a UML class diagram: classes, attributes and associations can be tagged using the stereotypes provided by the ODM profile. These stereotypes are documented in the section "ODM profile". Example models are provided in the directory test/testdata (see section "Prerequisites" for how to open the files).
@@ -17,11 +17,12 @@ The Ontology Design Metamodel (ODM) is a UML profile intended for designing onto
 * Needed for seeing the documentation and editing the test data: ArgoUML (http://argouml.tigris.org/)
 
 ## ODM Profile
-The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form) 
-on the work by Gaševic, Djuric and Devedžic (2009) and on 
+The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form)
+on the work by Gaševic, Djuric and Devedžic (2009) and on
 the Ontology Definition Metamodel specification (Object Management Group, 2009).
+The OWL files produced should be compliant with the OWL web ontology language reference, version 1 (Dean, 2004). 
 
-Before you start modelling, you should load the profile in your UML editor. 
+Before you start modelling, you should load the profile in your UML editor.
 
 e.g. in ArgoUML:
 * Launch ArgoUML and go to Edit -> Settings -> Profiles (on OSX, this is ArgoUML -> Preferences -> Profiles)
@@ -68,6 +69,8 @@ UML diagrams of the software (classes and activities) are in the file docs/ODM2O
 
 
 ## References
+
+Dean, M., Schreiber, G., Bechhofer, S., van Harmelen, F., Hendler, J., Horrocks, I., McGuinness, D.L., Patel-Schneider, P.F. and Stein, L.A., 2004. OWL web ontology language reference. W3C Recommendation February, 10. Available at: https://www.w3.org/TR/owl-ref/ (accessed 20 September 2017)
 
 Gaševic, D., Djuric, D. and Devedžic, V., 2009. The Ontology UML Profile. In Model Driven Engineering and Ontology Development (pp. 235-243). Springer Berlin Heidelberg.
 
