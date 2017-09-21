@@ -20,7 +20,7 @@ The Ontology Design Metamodel (ODM) is a UML profile intended for designing onto
 The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form)
 on the work by Gaševic, Djuric and Devedžic (2009) and on
 the Ontology Definition Metamodel specification (Object Management Group, 2009).
-The OWL files produced should be compliant with the OWL web ontology language reference, version 1 (Dean, 2004). 
+The OWL files produced should be compliant with the OWL web ontology language reference, version 1 (Dean, 2004).
 
 Before you start modelling, you should load the profile in your UML editor.
 
@@ -43,7 +43,7 @@ ODM.xmi provides the following stereotypes
 
 ODM.xmi provides the following data types
 * boolean
-* date
+* dateOWL
 * double
 * integer
 * string
