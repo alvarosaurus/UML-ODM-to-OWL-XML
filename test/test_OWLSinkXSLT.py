@@ -320,6 +320,16 @@ class test_OWLSinkXSLT(unittest.TestCase):
         self.assertTrue(parent is not None, "Parent class not found")
         self.assertTrue(child is not None, "Child class not found")
 
+        # check that child_1 is subclass of parent
+        superClasses = owl.findall(
+            './/' + ODMModel.full('owl:Class') + '/' + ODMModel.full('rdfs:subClassOf'))
+        self.assertEqual(1, len(superClasses), "Parent class not found")
+
+        # check that superClass of 'child_1' is 'parent'
+        parentName = superClasses[0].attrib[ODMModel.full('rdf:resource')]
+        self.assertEqual(
+            ODMModel.full('base:parent', asURI=True), parentName, "Wrong parent class")
+
 
 if __name__ == "__main__":
     unittest.main()

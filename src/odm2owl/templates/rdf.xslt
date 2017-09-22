@@ -61,13 +61,23 @@
       <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
 
       <xsl:if test="$xmi.id = $owlClass">
-        <owl:Class rdf:about="{$ns}#{@name}" />
+        <owl:Class rdf:about="{$ns}#{@name}">
+          <xsl:apply-templates select="UML:GeneralizableElement.generalization/UML:Generalization" />
+        </owl:Class>
       </xsl:if>
 
       <xsl:apply-templates select="UML:Classifier.feature/UML:Attribute">
           <xsl:with-param name="className" select="@name" />
       </xsl:apply-templates>
 
+  </xsl:template>
+
+  <!--Inheritance-->
+  <xsl:template match="UML:Generalization">
+    <xsl:variable name="xmi.idref" select="@xmi.idref"/>
+    <xsl:variable name="parent.idref" select="//UML:Generalization[@xmi.id=$xmi.idref]/UML:Generalization.parent/UML:Class/@xmi.idref" />
+    <xsl:variable name="parent.name" select="//UML:Class[@xmi.id=$parent.idref]/@name" />
+    <rdfs:subClassOf rdf:resource="{$ns}#{$parent.name}"/>
   </xsl:template>
 
   <!-- Transform UML AssociationClass into OWL ObjectProperty -->
