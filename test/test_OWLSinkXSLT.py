@@ -20,7 +20,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
     classesModelPath = "testdata/classes_and_properties.xmi"
     inheritanceModelPath = "testdata/inheritance.xmi"
     iri = ODMModel.ns['base']
-    templatePath = "../src/odm2owl/templates/rdf.xslt"
+    templatePath = "../src/odm2owl/templates/RDF.xslt"
     savePath = "/tmp/test.owl"
 
     def tearDown(self):
