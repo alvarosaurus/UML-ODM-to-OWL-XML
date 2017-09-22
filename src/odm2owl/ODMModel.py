@@ -20,11 +20,11 @@ class ODMModel():
     # values are fully expanded namespavće URIs
     ns = {
         'base': "http://example.org/ontologies/test",
-        'rdf': "http://www.w3.org/1999/02/22-rdf-syntax-ns",
-        'owl': "http://www.w3.org/2002/07/owl",
+        'rdf': "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        'owl': "http://www.w3.org/2002/07/owl#",
         'xml': "http://www.w3.org/XML/1998/namespace",
-        'xsd': "http://www.w3.org/2001/XMLSchema",
-        'rdfs': "http://www.w3.org/2000/01/rdf-schema"
+        'xsd': "http://www.w3.org/2001/XMLSchema#",
+        'rdfs': "http://www.w3.org/2000/01/rdf-schema#"
     }
     # @var iri: string, namespace iri for this ontology
     iri = None
@@ -71,7 +71,7 @@ class ODMModel():
         Prefixes are in the dictionary ODMModel.ns
 
         e.g.: rdf:bla gets expanded to:
-        * If asURI is True - {http://www.w3.org/1999/02/22-rdf-syntax-ns}bla
+        * If asURI is True - {http://www.w3.org/1999/02/22-rdf-syntax-ns#}bla
         * If asURI is True - http://www.w3.org/1999/02/22-rdf-syntax-ns#bla
 
         If the namespace was not found in ODMModel.ns, then the shortName is returned
@@ -92,7 +92,8 @@ class ODMModel():
                 resp = shortName
         # expand as URI
         else:
-            resp = ODMModel.ns[prefix] + "#" + rawName
+            prefix = ODMModel.ns[prefix].split('#', 2)[0]
+            resp = prefix + "#" + rawName
         return resp
 
     def _parseStereotypes(self):

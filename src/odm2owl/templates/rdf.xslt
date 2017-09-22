@@ -5,10 +5,10 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xml:base="http://example.org/ontologies/test"
     xmlns:UML = 'org.omg.xmi.namespace.UML'
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns"
-    xmlns:owl="http://www.w3.org/2002/07/owl"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
   <!-- Output options -->
@@ -34,11 +34,11 @@
     <rdf:RDF
       xmlns="http://example.org/ontologies/test"
       xml:base="http://example.org/ontologies/test"
-      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns"
-      xmlns:owl="http://www.w3.org/2002/07/owl"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:owl="http://www.w3.org/2002/07/owl#"
       xmlns:xml="http://www.w3.org/XML/1998/namespace"
-      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
       >
       <owl:Ontology rdf:about="{$ns}"/>
       <xsl:apply-templates select="XMI.content/UML:Model/UML:Namespace.ownedElement"/>

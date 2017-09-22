@@ -114,7 +114,7 @@ class test_ODMModel(unittest.TestCase):
     def test_full(self):
         """Test expand qualified names."""
         self.assertEqual(
-            "{http://www.w3.org/1999/02/22-rdf-syntax-ns}bla",
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}bla",
             ODMModel.full("rdf:bla"),
             "Wrong full expansion of qualified name.")
         self.assertEqual(

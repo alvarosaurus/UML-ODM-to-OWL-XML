@@ -26,9 +26,9 @@ class test_OWLSinkXSLT(unittest.TestCase):
     def tearDown(self):
         """Teardown the test files."""
         # delete the saved OWL file if present
-        if os.path.isfile(test_OWLSinkXSLT.savePath):
-            os.remove(test_OWLSinkXSLT.savePath)
-
+#        if os.path.isfile(test_OWLSinkXSLT.savePath):
+#            os.remove(test_OWLSinkXSLT.savePath)
+        pass
     def test_create(self):
         """
         Test instantiate.
@@ -98,7 +98,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # check that the OWLtree contains all classes
         self.assertEqual(
             2,
-            len(owl.findall("/{http://www.w3.org/2002/07/owl}Class")),
+            len(owl.findall('/' + ODMModel.full('owl:Class'))),
             "Wrong number of classes"
             )
 
@@ -265,7 +265,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # load a ODM model (classes and properties model)
         model = ODMSourceXMI().loadModel(
             test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.classesModelPath,
+            test_OWLSinkXSLT.inheritanceModelPath,
             test_OWLSinkXSLT.profilePath
             )
 
