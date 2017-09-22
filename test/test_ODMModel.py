@@ -111,6 +111,17 @@ class test_ODMModel(unittest.TestCase):
             "Wrong value for attribute owlDataProperty"
             )
 
+    def test_full(self):
+        """Test expand qualified names."""
+        self.assertEqual(
+            "{http://www.w3.org/1999/02/22-rdf-syntax-ns}bla",
+            ODMModel.full("rdf:bla"),
+            "Wrong full expansion of qualified name.")
+        self.assertEqual(
+            "http://www.w3.org/1999/02/22-rdf-syntax-ns#bla",
+            ODMModel.full("rdf:bla", asURI=True),
+            "Wrong URI expansion of qualified name.")
+
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.testName']
