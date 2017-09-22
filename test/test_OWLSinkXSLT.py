@@ -26,8 +26,9 @@ class test_OWLSinkXSLT(unittest.TestCase):
     def tearDown(self):
         """Teardown the test files."""
         # delete the saved OWL file if present
-        if os.path.isfile(test_OWLSinkXSLT.savePath):
-            os.remove(test_OWLSinkXSLT.savePath)
+#        if os.path.isfile(test_OWLSinkXSLT.savePath):
+#            os.remove(test_OWLSinkXSLT.savePath)
+        pass
 
     def test_create(self):
         """
@@ -70,11 +71,12 @@ class test_OWLSinkXSLT(unittest.TestCase):
             ODMModel.full('rdf:RDF'),
             "Root element is not RDF"
             )
-        # check that the namespace is correct
+        # check that the Ontology URI is correct
+        el = owl.find(ODMModel.path('owl:Ontology', startWith='any'))
         self.assertEqual(
-            root.attrib[ODMModel.full('xml:base')],
+            el.attrib[ODMModel.full('rdf:about')],
             test_OWLSinkXSLT.iri,
-            "Attribute xml:base is not %s" % test_OWLSinkXSLT.iri
+            "Ontology URI is not %s" % test_OWLSinkXSLT.iri
             )
 
     def test_Classes(self):
@@ -141,16 +143,14 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         # check that the OWLtree contains all ObjectPropertyDomains
         self.assertEqual(
-            1,
-            len(owl.findall(
-                '/' + ODMModel.full('owl:ObjectProperty') + '/' + ODMModel.full('rdfs:domain'))),
-            "Wrong number of object property domains"
-            )
+			1,
+			len(owl.findall(ODMModel.path('owl:ObjectProperty', 'rdfs:domain'))),
+			"Wrong number of object property domains"
+			)
         # check that the OWLtree contains all ObjectPropertyRanges
         self.assertEqual(
             1,
-            len(owl.findall(
-                '/' + ODMModel.full('owl:ObjectProperty') + '/' + ODMModel.full('rdfs:range'))),
+            len(owl.findall(ODMModel.path('owl:ObjectProperty', 'rdfs:range'))),
             "Wrong number of object property ranges"
             )
 
@@ -170,8 +170,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # check that the OWLtree contains all data properties
         self.assertEqual(
             3,
-            len(owl.findall(
-                '/' + ODMModel.full('owl:DatatypeProperty'))),
+            len(owl.findall(ODMModel.path('owl:DatatypeProperty'))),
             "Wrong number of data properties"
             )
 
@@ -190,14 +189,11 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         # check that the OWLtree contains all DataPropertyDomains
         self.assertEqual(
-            3, len(owl.findall(
-                # '/{' + ns['owl'] + '#}DatatypeProperty/{' + ns['rdfs'] + '#}domain')),
-                '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:domain'))),
+            3, len(owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:domain'))),
             "Wrong number of data property domains"
             )
         # check that DataPropertyDomains point to the correct Class
-        domains = owl.findall(
-            '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:domain'))
+        domains = owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:domain'))
         count = 0
         for d in domains:
             if (
@@ -208,8 +204,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         self.assertEqual(2, count, "Wrong class for data property")
         # check that DataPropertyDomains point to the correct Class
-        domains = owl.findall(
-            '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:domain'))
+        domains = owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:domain'))
         count = 0
         for d in domains:
             if (
@@ -222,13 +217,11 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         # check that the OWLtree contains all DataPropertyRanges
         self.assertEqual(
-            3, len(owl.findall(
-                '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:range'))),
+            3, len(owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:range'))),
             "Wrong number of data property ranges"
             )
         # check that the OWLtree contains all DataPropertyRange types in the test file
-        domains = owl.findall(
-            '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:range'))
+        domains = owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:range'))
         count = 0
         for d in domains:
             # if d.attrib['{' + ns['rdf'] + '#}resource'] == ns['xsd'] + '#integer':
@@ -237,8 +230,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         self.assertEqual(1, count, "Wrong range for data property")
 
-        domains = owl.findall(
-            '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:range'))
+        domains = owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:range'))
         count = 0
         for d in domains:
             if d.attrib[ODMModel.full('rdf:resource')] == ODMModel.full('xsd:string', asURI=True):
@@ -246,8 +238,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         self.assertEqual(1, count, "Wrong range for data property")
 
-        domains = owl.findall(
-            '/' + ODMModel.full('owl:DatatypeProperty') + '/' + ODMModel.full('rdfs:range'))
+        domains = owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:range'))
         count = 0
         for d in domains:
             if (d.attrib[ODMModel.full('rdf:resource')] ==
@@ -308,7 +299,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
             )
 
         # check that the OWLtree contains all classes
-        classes = owl.findall('/' + ODMModel.full('owl:Class'))
+        classes = owl.findall(ODMModel.path('owl:Class'))
         parent = None
         child = None
         for c in classes:
@@ -321,8 +312,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         self.assertTrue(child is not None, "Child class not found")
 
         # check that child_1 is subclass of parent
-        superClasses = owl.findall(
-            './/' + ODMModel.full('owl:Class') + '/' + ODMModel.full('rdfs:subClassOf'))
+        superClasses = owl.findall(ODMModel.path('owl:Class', 'rdfs:subClassOf', startWith='descendant'))
         self.assertEqual(1, len(superClasses), "Parent class not found")
 
         # check that superClass of 'child_1' is 'parent'

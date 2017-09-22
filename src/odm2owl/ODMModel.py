@@ -96,6 +96,30 @@ class ODMModel():
             resp = prefix + "#" + rawName
         return resp
 
+    @staticmethod
+    def path(*args, **kwargs):
+        """
+        Join any number of qualified element names.
+        
+        example 2:
+            ODMModel.path('owl:Class', 'rdfs:subClassOf'), startWith='descendant')
+        returns:
+            .//{http://www.w3.org/2002/07/owl#}Class/{http://www.w3.org/2000/01/rdf-schema#}subClassOf
+            
+        @param *args, string any number of qualified names in short form, e.g. rdf:bla
+        @param kwargs, start the path with /, .// or //, resp. startWith=root(default)|descendant|any
+        """
+        expressions = {'root': '/', 'descendant': './/', 'any': '//'}
+        exp = "/"
+        if kwargs is not None:
+            if 'startWith' in kwargs:
+                exp = expressions[kwargs['startWith']]
+        resp = ''
+        for path in args:
+            resp += exp + ODMModel.full(path)
+            exp = '/'
+        return resp
+
     def _parseStereotypes(self):
         """
         Parse stereotypes in the profile.

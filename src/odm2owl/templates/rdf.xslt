@@ -37,7 +37,6 @@
   <xsl:template match="/XMI">
     <rdf:RDF
       xmlns="http://example.org/ontologies/test"
-      xml:base="http://example.org/ontologies/test"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       xmlns:owl="http://www.w3.org/2002/07/owl#"
       xmlns:xml="http://www.w3.org/XML/1998/namespace"
