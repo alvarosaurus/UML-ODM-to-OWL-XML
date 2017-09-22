@@ -26,9 +26,9 @@ class test_OWLSinkXSLT(unittest.TestCase):
     def tearDown(self):
         """Teardown the test files."""
         # delete the saved OWL file if present
-#        if os.path.isfile(test_OWLSinkXSLT.savePath):
-#            os.remove(test_OWLSinkXSLT.savePath)
-        pass
+        if os.path.isfile(test_OWLSinkXSLT.savePath):
+            os.remove(test_OWLSinkXSLT.savePath)
+
     def test_create(self):
         """
         Test instantiate.
