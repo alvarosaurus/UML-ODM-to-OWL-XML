@@ -5,7 +5,7 @@ Created on 15 Sep 2017
 
 @author: Alvaro Ortiz Troncoso Ortiz
 """
-
+from lxml import etree
 
 class ODMModel():
     """
@@ -140,7 +140,9 @@ class ODMModel():
         # build a dictionary
         stereotypes = {}
         for s in stpList:
-            stereotypes[s.attrib.get('name')] = s.attrib.get('xmi.id')
+            attName = s.attrib.get('name')
+            if attName is not None:
+                stereotypes[attName] = s.attrib.get('xmi.id')
 
         return stereotypes
 
@@ -158,7 +160,6 @@ class ODMModel():
         # find all stereotype elements in the ODM profile
         qualifiedTag = ".//{{{0}}}DataType".format(umlNs)
         dtpList = self.profile.getroot().findall(qualifiedTag)
-
         # build a dictionary
         datatypes = {}
         for d in dtpList:
@@ -176,3 +177,7 @@ class ODMModel():
         for key, value in dictionary.items():
             if (key is not None):
                 self.ontology.getroot().set(key, value)
+                
+    def __repr__(self):
+        """Represent the ontology tree in the model as a String."""
+        return etree.tostring(self.ontology, pretty_print=True)

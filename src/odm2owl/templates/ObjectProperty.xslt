@@ -7,7 +7,7 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
-  <!-- Transform UML AssociationClass into OWL ObjectProperty -->
+  <!-- Transform UML:AssociationClass into OWLObjectProperty -->
   <xsl:template match="UML:AssociationClass">
       <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
       <!-- Reference to the domain class -->
@@ -15,7 +15,8 @@
       <!-- Reference to the range class -->
       <xsl:variable name="range.idref" select="UML:Classifier.feature/UML:Attribute[@name='range']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
 
-      <xsl:if test="$xmi.id = $objectProperty">
+      <!--The UML:AssociationClass should point to the OWLObjectProperty sterotype in the profile-->
+      <xsl:if test="$xmi.id = $OWLObjectProperty">
         <owl:ObjectProperty rdf:about="{$ns}#{@name}">
             <rdfs:domain rdf:resource="{$ns}#{//UML:Class[@xmi.id=$domain.idref]/@name}"/>
             <rdfs:range rdf:resource="{$ns}#{//UML:Class[@xmi.id=$range.idref]/@name}"/>

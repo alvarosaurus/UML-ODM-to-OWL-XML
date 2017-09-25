@@ -15,7 +15,7 @@ from odm2owl.ODMSourceXMI import ODMSourceXMI
 class test_ODMSourceXMI(unittest.TestCase):
     """Test open a ODM source file."""
 
-    profilePath = "../profiles/ODM.xmi"
+    profilePath = "../profiles/ODM1.xmi"
     testModelPath = "testdata/empty.xmi"
     iri = "http://example.org/ontologies/test"
 

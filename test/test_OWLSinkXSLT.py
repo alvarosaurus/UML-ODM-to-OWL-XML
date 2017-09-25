@@ -15,7 +15,7 @@ from odm2owl.ODMModel import ODMModel
 class test_OWLSinkXSLT(unittest.TestCase):
     """Test save OWL to file."""
 
-    profilePath = "../profiles/ODM.xmi"
+    profilePath = "../profiles/ODM1.xmi"
     emptyModelPath = "testdata/empty.xmi"
     classesModelPath = "testdata/classes_and_properties.xmi"
     inheritanceModelPath = "testdata/inheritance.xmi"

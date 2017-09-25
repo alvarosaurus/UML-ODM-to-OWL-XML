@@ -23,8 +23,8 @@
   <xsl:variable name="ns" select="/XMI/@iri" />
 
   <!-- Define stereotypes as global variables -->
-  <xsl:variable name="owlClass" select="/XMI/@owlClass" />
-  <xsl:variable name="objectProperty" select="/XMI/@objectProperty" />
+  <xsl:variable name="OWLClass" select="/XMI/@OWLClass" />
+  <xsl:variable name="OWLObjectProperty" select="/XMI/@OWLObjectProperty" />
 
   <!-- Define datatypes as global variables -->
   <xsl:variable name="stringType" select="/XMI/@string" />
@@ -43,6 +43,7 @@
       xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
       >
+
       <owl:Ontology rdf:about="{$ns}"/>
       <xsl:apply-templates select="XMI.content/UML:Model/UML:Namespace.ownedElement"/>
 

@@ -4,7 +4,7 @@ Test the ZargoSource class.
 Created on 19 Sep 2017
 
 export PYTHONPATH=${PYTHONPATH}:../src
-python test_ODMSourceXMI.py
+python test_ZargoSource.py
 
 @author: Alvaro Ortiz Troncoso
 """
@@ -16,7 +16,7 @@ from zargo.ZargoSource import ZargoSource
 class test_ZargoSource(unittest.TestCase):
     """Test the ZargoSource class."""
 
-    profilePath = "../profiles/ODM.xmi"
+    profilePath = "../profiles/ODM1.xmi"
     emptyModelPath = "testdata/empty.zargo"
     classesModelPath = "testdata/classes_and_properties.zargo"
     iri = "http://example.org/ontologies/test"
@@ -73,3 +73,8 @@ class test_ZargoSource(unittest.TestCase):
         # profile correct?
         prRoot = model.profile.getroot()
         self.assertEqual(prRoot.tag, "XMI", "Root element of profile is not XMI")
+
+
+if __name__ == "__main__":
+    # import sys;sys.argv = ['', 'Test.testName']
+    unittest.main()
