@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Sep 25 15:46:20 CEST 2017'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Sep 26 00:23:32 CEST 2017'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -9,22 +9,20 @@
     <UML:Model xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A5F'
       name = 'ODM1.1' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
       isAbstract = 'false'>
-      <UML:ModelElement.stereotype>
-        <UML:Stereotype xmi.idref = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A60'/>
-      </UML:ModelElement.stereotype>
       <UML:Namespace.ownedElement>
-        <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A60'
-          name = 'profile' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
-          isAbstract = 'false'/>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61'
           name = 'OntClass' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
           <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+          <UML:ModelElement.stereotype>
+            <UML:Stereotype xmi.idref = '-64--88-2--59-7c8184a7:15ebab94752:-8000:00000000000026A7'/>
+          </UML:ModelElement.stereotype>
         </UML:Stereotype>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62'
-          name = 'DatatypeProperty' isSpecification = 'false' isRoot = 'false'
-          isLeaf = 'false' isAbstract = 'false'>
+          name = 'DatatypeProperty' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
           <UML:Stereotype.baseClass>Attribute</UML:Stereotype.baseClass>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
         </UML:Stereotype>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A63'
           name = 'ObjectProperty' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
@@ -34,6 +32,7 @@
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A65'
           name = 'domain' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Attribute</UML:Stereotype.baseClass>
           <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
         </UML:Stereotype>
         <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E76'
@@ -51,6 +50,12 @@
         <UML:DataType xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000E7A'
           name = 'boolean' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'/>
+        <UML:Stereotype xmi.id = '-64--88-2--59-7c8184a7:15ebab94752:-8000:00000000000026A7'
+          name = 'range' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Attribute</UML:Stereotype.baseClass>
+          <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
+        </UML:Stereotype>
       </UML:Namespace.ownedElement>
     </UML:Model>
   </XMI.content>

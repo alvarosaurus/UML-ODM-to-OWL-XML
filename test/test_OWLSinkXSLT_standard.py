@@ -13,7 +13,7 @@ from odm2owl.ODMSourceXMI import ODMSourceXMI
 from odm2owl.ODMModel import ODMModel
 
 
-class test_OWLSinkXSLT(unittest.TestCase):
+class test_OWLSinkXSLT_standard(unittest.TestCase):
     """Test save OWL to file."""
 
     profilePath = "../profiles/ODM1.xmi"
@@ -27,8 +27,8 @@ class test_OWLSinkXSLT(unittest.TestCase):
     def tearDown(self):
         """Teardown the test files."""
         # delete the saved OWL file if present
-#        if os.path.isfile(test_OWLSinkXSLT.savePath):
-#            os.remove(test_OWLSinkXSLT.savePath)
+#        if os.path.isfile(test_OWLSinkXSLT_standard.savePath):
+#            os.remove(test_OWLSinkXSLT_standard.savePath)
         pass
 
     def test_create(self):
@@ -37,7 +37,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         Can an OWLSinkXSLT object be instantiated at all?
         """
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         self.assertFalse(sink is None, "Could not create OWLSinkXSLT object")
 
     def test_transformEmpty(self):
@@ -49,20 +49,20 @@ class test_OWLSinkXSLT(unittest.TestCase):
         """
         # load a ODM model (empty model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.emptyModelPath,
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.emptyModelPath,
             self.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that programs runs this ontologyIRI
         self.assertFalse(
             owl is None,
             "Could not transform file %s using template %s"
-            % (test_OWLSinkXSLT.emptyModelPath, test_OWLSinkXSLT.templatePath)
+            % (test_OWLSinkXSLT_standard.emptyModelPath, test_OWLSinkXSLT_standard.templatePath)
             )
 
         # check that result tree contains OWL
@@ -76,8 +76,8 @@ class test_OWLSinkXSLT(unittest.TestCase):
         el = owl.find(ODMModel.path('owl:Ontology', startWith='any'))
         self.assertEqual(
             el.attrib[ODMModel.full('rdf:about')],
-            test_OWLSinkXSLT.iri,
-            "Ontology URI is not %s" % test_OWLSinkXSLT.iri
+            test_OWLSinkXSLT_standard.iri,
+            "Ontology URI is not %s" % test_OWLSinkXSLT_standard.iri
             )
 
     def test_Classes(self):
@@ -89,13 +89,13 @@ class test_OWLSinkXSLT(unittest.TestCase):
         """
         # load a ODM model (classes and properties model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.classesModelPath,
-            test_OWLSinkXSLT.profilePath
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.classesModelPath,
+            test_OWLSinkXSLT_standard.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that the OWLtree contains all classes
@@ -108,13 +108,13 @@ class test_OWLSinkXSLT(unittest.TestCase):
     def test_ObjectProperties(self):
         """Test load a ODM model (classes and properties model)."""
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.classesModelPath,
-            test_OWLSinkXSLT.profilePath
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.classesModelPath,
+            test_OWLSinkXSLT_standard.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that the OWLtree contains all object properties
@@ -133,13 +133,13 @@ class test_OWLSinkXSLT(unittest.TestCase):
         """
         # load a ODM model (classes and properties model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.classesModelPath,
-            test_OWLSinkXSLT.profilePath
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.classesModelPath,
+            test_OWLSinkXSLT_standard.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that the OWLtree contains all ObjectPropertyDomains
@@ -159,18 +159,18 @@ class test_OWLSinkXSLT(unittest.TestCase):
         """Test load data properties."""
         # load a ODM model (classes and properties model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.classesModelPath,
-            test_OWLSinkXSLT.profilePath
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.classesModelPath,
+            test_OWLSinkXSLT_standard.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that the OWLtree contains all data properties
         self.assertEqual(
-            3,
+            5,
             len(owl.findall(ODMModel.path('owl:DatatypeProperty'))),
             "Wrong number of data properties"
             )
@@ -179,18 +179,18 @@ class test_OWLSinkXSLT(unittest.TestCase):
         """Test domains and ranges of data properties."""
         # load a ODM model (classes and properties model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.classesModelPath,
-            test_OWLSinkXSLT.profilePath
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.classesModelPath,
+            test_OWLSinkXSLT_standard.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that the OWLtree contains all DataPropertyDomains
         self.assertEqual(
-            3, len(owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:domain'))),
+            5, len(owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:domain'))),
             "Wrong number of data property domains"
             )
         # check that DataPropertyDomains point to the correct Class
@@ -214,7 +214,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
             ):
                 count += 1
 
-        self.assertEqual(1, count, "Wrong class for data property")
+        self.assertEqual(2, count, "Wrong class for data property")
 
         # check that the OWLtree contains all DataPropertyRanges
         self.assertEqual(
@@ -256,47 +256,47 @@ class test_OWLSinkXSLT(unittest.TestCase):
         """
         # load a ODM model (classes and properties model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.inheritanceModelPath,
-            test_OWLSinkXSLT.profilePath
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.inheritanceModelPath,
+            test_OWLSinkXSLT_standard.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         sink.transform(model)
 
         # delete the saved OWL file if present
-        if os.path.isfile(test_OWLSinkXSLT.savePath):
-            os.remove(test_OWLSinkXSLT.savePath)
+        if os.path.isfile(test_OWLSinkXSLT_standard.savePath):
+            os.remove(test_OWLSinkXSLT_standard.savePath)
 
         # save the file
-        sink.save(test_OWLSinkXSLT.savePath)
+        sink.save(test_OWLSinkXSLT_standard.savePath)
 
         # check that file exists
         self.assertTrue(
-            os.path.isfile(test_OWLSinkXSLT.savePath),
+            os.path.isfile(test_OWLSinkXSLT_standard.savePath),
             "Saved OWL file not found. Expected: %s"
-            % test_OWLSinkXSLT.savePath
+            % test_OWLSinkXSLT_standard.savePath
             )
 
     def test_Inheritance(self):
         """Parse the inheritance.xmi test file."""
         # load a ODM model (empty model)
         model = ODMSourceXMI().loadModel(
-            test_OWLSinkXSLT.iri,
-            test_OWLSinkXSLT.inheritanceModelPath,
+            test_OWLSinkXSLT_standard.iri,
+            test_OWLSinkXSLT_standard.inheritanceModelPath,
             self.profilePath
             )
 
         # instantiate OWLSink object and apply transformation
-        sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
+        sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
 
         # check that programs runs this ontologyIRI
         self.assertFalse(
             owl is None,
             "Could not transform file %s using template %s"
-            % (test_OWLSinkXSLT.emptyModelPath, test_OWLSinkXSLT.templatePath)
+            % (test_OWLSinkXSLT_standard.emptyModelPath, test_OWLSinkXSLT_standard.templatePath)
             )
 
         # check that the OWLtree contains all classes
