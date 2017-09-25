@@ -19,15 +19,11 @@ The Ontology Design Metamodel (ODM) is a UML profile intended for designing onto
 This is a work in progress. See https://github.com/AlvaroOrtizTroncoso/UML-ODM-to-OWL-XML/wiki for usage.
 
 ## Tests
-These models are provided for testing in ArgoUML .zargo format:
-
-Directory test/testdata:
-* empty.zargo
-* classes and properties.zargo
+Test models are provided for testing in ArgoUML .zargo format, in directory test/testdata:
 
 To run the tests, I recommend you install "green" and "coverage", which should be installed if you did `pip3 install -r requirements.txt`.
 
-To run the tests and get code coverage run:
+To run the tests and get code coverage:
 
 ```
 cd test
