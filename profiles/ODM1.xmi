@@ -17,17 +17,17 @@
           name = 'profile' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'/>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61'
-          name = 'OWLClass' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          name = 'OntClass' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
           <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
         </UML:Stereotype>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62'
-          name = 'OWLDatatypeProperty' isSpecification = 'false' isRoot = 'false'
+          name = 'DatatypeProperty' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'>
           <UML:Stereotype.baseClass>Attribute</UML:Stereotype.baseClass>
         </UML:Stereotype>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A63'
-          name = 'OWLObjectProperty' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          name = 'ObjectProperty' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
           <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
         </UML:Stereotype>

@@ -23,8 +23,8 @@
   <xsl:variable name="ns" select="/XMI/@iri" />
 
   <!-- Define stereotypes as global variables -->
-  <xsl:variable name="OWLClass" select="/XMI/@OWLClass" />
-  <xsl:variable name="OWLObjectProperty" select="/XMI/@OWLObjectProperty" />
+  <xsl:variable name="OntClass" select="/XMI/@OntClass" />
+  <xsl:variable name="ObjectProperty" select="/XMI/@ObjectProperty" />
 
   <!-- Define datatypes as global variables -->
   <xsl:variable name="stringType" select="/XMI/@string" />

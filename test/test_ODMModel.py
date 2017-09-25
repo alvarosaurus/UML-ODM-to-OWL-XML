@@ -51,12 +51,12 @@ class test_ODMModel(unittest.TestCase):
         model = ODMModel(test_ODMModel.iri, ontology, profile)
 
         # get the xmi.id of some stereotypes
-        name = 'OWLClass'
+        name = 'OntClass'
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61',
             model.stereotypes[name], "Wrong xmi.id for stereotype %s" % name
             )
-        name = 'OWLDatatypeProperty'
+        name = 'DatatypeProperty'
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
             model.stereotypes[name],
@@ -102,13 +102,13 @@ class test_ODMModel(unittest.TestCase):
         # check that some attributes have been set
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A61',
-            model.ontology.getroot().get('OWLClass'),
+            model.ontology.getroot().get('OntClass'),
             "Wrong value for attribute OWLClass"
             )
         
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
-            model.ontology.getroot().get('OWLDatatypeProperty'),
+            model.ontology.getroot().get('DatatypeProperty'),
             "Wrong value for attribute DataType"
             )
 

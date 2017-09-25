@@ -8,12 +8,12 @@
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
 
-<!-- Transform UML:Class into OWLClass -->
+<!-- Transform UML:OntClass into OWLClass -->
   <xsl:template match="UML:Class">
       <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
 
-      <!--The UML:Class should point to the OWLClass sterotype in the profile-->
-      <xsl:if test="$xmi.id = $OWLClass">
+      <!--The UML:Class should point to the OntClass sterotype in the profile-->
+      <xsl:if test="$xmi.id = $OntClass">
         <owl:Class rdf:about="{$ns}#{@name}">
           <xsl:apply-templates select="UML:GeneralizableElement.generalization/UML:Generalization" />
         </owl:Class>
