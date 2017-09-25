@@ -32,7 +32,7 @@
           <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
         </UML:Stereotype>
         <UML:Stereotype xmi.id = '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A65'
-          name = 'RDFSdomain' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          name = 'domain' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
           <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
         </UML:Stereotype>

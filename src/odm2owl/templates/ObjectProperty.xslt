@@ -7,8 +7,8 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
-  <!-- Transform UML:AssociationClass into OWLObjectProperty -->
-  <xsl:template match="UML:AssociationClass">
+  <!-- Transform UML:Class or UML:AssociationClass into OWLObjectProperty if stereotype is ObjectProperty-->
+  <xsl:template match="UML:Class|UML:AssociationClass" mode="ObjectProperty">
       <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
       <!-- Reference to the domain class -->
       <xsl:variable name="domain.idref" select="UML:Classifier.feature/UML:Attribute[@name='domain']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />

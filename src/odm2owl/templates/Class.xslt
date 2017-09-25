@@ -9,7 +9,7 @@
 >
 
 <!-- Transform UML:OntClass into OWLClass -->
-  <xsl:template match="UML:Class">
+  <xsl:template match="UML:Class" mode="OntClass">
       <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
 
       <!--The UML:Class should point to the OntClass sterotype in the profile-->

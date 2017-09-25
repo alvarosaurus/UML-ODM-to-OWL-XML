@@ -1,15 +1,6 @@
 # UML-ODM-to-OWL-XML
 A script that converts UML Ontology Definition Metamodel (ODM) files into XML Web Ontology Language (OWL) files.
 
-## Introduction
-Ontologies are abstract representations of specific domains of the real world: these representations are constructed by naming relevant concepts and identifying the constraints that rule their use; as ontologies embody shared human knowledge in a machine-readable format, they are the cornerstones of knowledge- management and retrieval (Studer, Benjamins and Fensel, 1998).
-
-UML (unified modelling language) provides a set of standardized diagrammatic notations to conceptualize a system design.
-UML can be extended through "profiles", allowing to customize basic UML notations for specific tasks.
-Profiles consist mainly of a collection of "stereotypes", used to tag UML elements, allowing to apply specific constraints to these elements.
-
-The Ontology Design Metamodel (ODM) is a UML profile intended for designing ontologies. An ontology can be modelled in a UML class diagram: classes, attributes and associations can be tagged using the stereotypes provided by the ODM profile. These stereotypes are documented in the section "ODM profile". Example models are provided in the directory test/testdata (see section "Prerequisites" for how to open the files).
-
 ## Prerequisites
 * Python 3.
 * To install the necessary Python packages, do: `pip3 install -r requirements.txt`
