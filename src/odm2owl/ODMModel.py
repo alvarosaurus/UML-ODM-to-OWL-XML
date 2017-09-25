@@ -17,7 +17,7 @@ class ODMModel():
 
     # namespaces:
     # keys are short namespace prefixes,
-    # values are fully expanded namespavće URIs
+    # values are fully expanded namespace URIs
     ns = {
         'base': "http://example.org/ontologies/test",
         'rdf': "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -100,14 +100,16 @@ class ODMModel():
     def path(*args, **kwargs):
         """
         Join any number of qualified element names.
-        
+
         example 2:
             ODMModel.path('owl:Class', 'rdfs:subClassOf'), startWith='descendant')
         returns:
             .//{http://www.w3.org/2002/07/owl#}Class/{http://www.w3.org/2000/01/rdf-schema#}subClassOf
-            
+
         @param *args, string any number of qualified names in short form, e.g. rdf:bla
-        @param kwargs, start the path with /, .// or //, resp. startWith=root(default)|descendant|any
+        @param kwargs, start the path with /, .// or //,
+        resp. startWith=root(default)|descendant|any
+
         """
         expressions = {'root': '/', 'descendant': './/', 'any': '//'}
         exp = "/"

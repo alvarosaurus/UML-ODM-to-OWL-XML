@@ -10,43 +10,13 @@ Profiles consist mainly of a collection of "stereotypes", used to tag UML elemen
 
 The Ontology Design Metamodel (ODM) is a UML profile intended for designing ontologies. An ontology can be modelled in a UML class diagram: classes, attributes and associations can be tagged using the stereotypes provided by the ODM profile. These stereotypes are documented in the section "ODM profile". Example models are provided in the directory test/testdata (see section "Prerequisites" for how to open the files).
 
-
 ## Prerequisites
 * Python 3.
 * To install the necessary Python packages, do: `pip3 install -r requirements.txt`
 * Needed for seeing the documentation and editing the test data: ArgoUML (http://argouml.tigris.org/)
 
-## ODM Profile
-The file profiles/ODM.xmi contains a UML profile for ODM. The profile proposed in ODM.xmi is based (in a derived form)
-on the work by Gaševic, Djuric and Devedžic (2009) and on
-the Ontology Definition Metamodel specification (Object Management Group, 2009).
-The OWL files produced should be compliant with the OWL web ontology language reference, version 1 (Dean, 2004).
-
-Before you start modelling, you should load the profile in your UML editor.
-
-e.g. in ArgoUML:
-* Launch ArgoUML and go to Edit -> Settings -> Profiles (on OSX, this is ArgoUML -> Preferences -> Profiles)
-* Click on Add and specify your _profiles_ directory.
-* Click on "refresh list" (or close and relaunch ArgoUML and go back to Edit -> Settings -> Profiles)
-* ArgoUML should have listed the new profile. Add it to the defaults profiles.
-* You can now load one of the test ontologies provided in test/testdata/*.zargo
-
-ODM.xmi provides the following stereotypes
-
-| Stereotype      | Base Class  |
-| --------------- | ----------  |
-| owlClass        | Class       |
-| objectProperty  | Class       |
-| owlDataProperty | Attribute   |
-| owlValue        | Association |
-| rdfsDomain      | Association |
-
-ODM.xmi provides the following data types
-* boolean
-* dateOWL
-* double
-* integer
-* string
+## Usage
+This is a work in progress. See https://github.com/AlvaroOrtizTroncoso/UML-ODM-to-OWL-XML/wiki for usage.
 
 ## Tests
 These models are provided for testing in ArgoUML .zargo format:
@@ -64,16 +34,5 @@ cd test
 bash test.sh
 ```
 
-## Documentation
+## Developer documentation
 UML diagrams of the software (classes and activities) are in the file docs/ODM2OWL.zargo
-
-
-## References
-
-Dean, M., Schreiber, G., Bechhofer, S., van Harmelen, F., Hendler, J., Horrocks, I., McGuinness, D.L., Patel-Schneider, P.F. and Stein, L.A., 2004. OWL web ontology language reference. W3C Recommendation February, 10. Available at: https://www.w3.org/TR/owl-ref/ (accessed 20 September 2017)
-
-Gaševic, D., Djuric, D. and Devedžic, V., 2009. The Ontology UML Profile. In Model Driven Engineering and Ontology Development (pp. 235-243). Springer Berlin Heidelberg.
-
-Object Management Group, 2009. Ontology Definition Metamodel. Available at http://www.omg.org/spec/ODM/1.1/ (accessed 14 September 2017)
-
-Studer, R., Benjamins, V.R. and Fensel, D., 1998. Knowledge engineering: principles and methods. Data & knowledge engineering, 25(1-2), pp.161-197.
