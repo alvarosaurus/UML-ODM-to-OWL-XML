@@ -187,7 +187,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
         # instantiate OWLSink object and apply transformation
         sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         owl = sink.transform(model)
-
+        print(owl)
         # check that the OWLtree contains all DataPropertyDomains
         self.assertEqual(
             5, len(owl.findall(ODMModel.path('owl:DatatypeProperty', 'rdfs:domain'))),

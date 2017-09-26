@@ -7,33 +7,45 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
-		
-	<!-- Transform UML Attribute into DataProperty -->
-	  <xsl:template match="UML:Attribute">
-	      <xsl:param name="className" />
-	      <!-- Reference to the range data type -->
-	      <xsl:variable name="datatype.href" select="substring-after( UML:StructuralFeature.type/UML:DataType/@href, '#' )" />
-	
-	      <owl:DatatypeProperty rdf:about="{$ns}#{@name}">
-	        <rdfs:domain rdf:resource="{$ns}#{$className}"/>
-	        <xsl:choose>
-	          <xsl:when test="$datatype.href=$stringType">
-	            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-	          </xsl:when>
-	          <xsl:when test="$datatype.href=$integerType">
-	            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-	          </xsl:when>
-	          <xsl:when test="$datatype.href=$dateType">
-	            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-	          </xsl:when>
-	          <xsl:when test="$datatype.href=$doubleType">
-	            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-	          </xsl:when>
-	          <xsl:when test="$datatype.href=$booleanType">
-	            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-	          </xsl:when>
-	      </xsl:choose>
-	      </owl:DatatypeProperty>
-	
-	  </xsl:template>
+	<!--Transform UML:Class with stereotype DatatypeProperty into DatatypeProperty-->
+    <xsl:template match="UML:Class" mode="DatatypeProperty">
+        <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
+
+        <!--The UML:Class should point to the DatatypeProperty sterotype in the profile-->
+        <xsl:if test="$xmi.id = $DatatypeProperty">
+          <owl:DatatypeProperty rdf:about="{$ns}#{@name}">
+              <rdfs:domain rdf:resource="{$ns}#domain"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#range"/>
+          </owl:DatatypeProperty>
+        </xsl:if>
+    </xsl:template>
+
+	<!-- Transform UML:Attribute into DatatypeProperty -->
+    <xsl:template match="UML:Attribute">
+      <xsl:param name="className" />
+      <!-- Reference to the range data type -->
+      <xsl:variable name="datatype.href" select="substring-after( UML:StructuralFeature.type/UML:DataType/@href, '#' )" />
+
+      <owl:DatatypeProperty rdf:about="{$ns}#{@name}">
+        <rdfs:domain rdf:resource="{$ns}#{$className}"/>
+        <xsl:choose>
+          <xsl:when test="$datatype.href=$stringType">
+            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+          </xsl:when>
+          <xsl:when test="$datatype.href=$integerType">
+            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+          </xsl:when>
+          <xsl:when test="$datatype.href=$dateType">
+            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+          </xsl:when>
+          <xsl:when test="$datatype.href=$doubleType">
+            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+          </xsl:when>
+          <xsl:when test="$datatype.href=$booleanType">
+            <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+          </xsl:when>
+      </xsl:choose>
+      </owl:DatatypeProperty>
+
+    </xsl:template>
 </xsl:stylesheet>

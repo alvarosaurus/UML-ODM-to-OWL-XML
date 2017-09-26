@@ -17,11 +17,10 @@
         <owl:Class rdf:about="{$ns}#{@name}">
           <xsl:apply-templates select="UML:GeneralizableElement.generalization/UML:Generalization" />
         </owl:Class>
+        <xsl:apply-templates select="UML:Classifier.feature/UML:Attribute">
+            <xsl:with-param name="className" select="@name" />
+        </xsl:apply-templates>
       </xsl:if>
-
-      <xsl:apply-templates select="UML:Classifier.feature/UML:Attribute">
-          <xsl:with-param name="className" select="@name" />
-      </xsl:apply-templates>
 
   </xsl:template>
 

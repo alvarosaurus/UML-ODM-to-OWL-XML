@@ -25,6 +25,7 @@
   <!-- Define stereotypes as global variables -->
   <xsl:variable name="OntClass" select="/XMI/@OntClass" />
   <xsl:variable name="ObjectProperty" select="/XMI/@ObjectProperty" />
+  <xsl:variable name="DatatypeProperty" select="/XMI/@DatatypeProperty" />
 
   <!-- Define datatypes as global variables -->
   <xsl:variable name="stringType" select="/XMI/@string" />
@@ -55,9 +56,7 @@
   <xsl:template match="UML:Namespace.ownedElement">
       <xsl:apply-templates select="UML:Class" mode="OntClass"/>
       <xsl:apply-templates select="UML:AssociationClass|UML:Class" mode="ObjectProperty"/>
-      <!--
-      <xsl:apply-templates select="UML:Association"/>
-      -->
+      <xsl:apply-templates select="UML:Class" mode="DatatypeProperty"/>
   </xsl:template>
 
 </xsl:stylesheet>
