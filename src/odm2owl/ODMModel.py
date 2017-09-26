@@ -7,6 +7,7 @@ Created on 15 Sep 2017
 """
 from lxml import etree
 
+
 class ODMModel():
     """
     An object encapsulating an ontology.
@@ -177,7 +178,7 @@ class ODMModel():
         for key, value in dictionary.items():
             if (key is not None):
                 self.ontology.getroot().set(key, value)
-                
+
     def __repr__(self):
         """Represent the ontology tree in the model as a String."""
         return etree.tostring(self.ontology, pretty_print=True)

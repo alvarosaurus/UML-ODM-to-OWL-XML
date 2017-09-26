@@ -11,7 +11,7 @@
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
   <!--Import a template for each OWL element supported-->
-  <xsl:import href="DataProperty.xslt" />
+  <xsl:import href="DatatypeProperty.xslt" />
   <xsl:import href="Class.xslt" />
   <xsl:import href="ObjectProperty.xslt" />
 
