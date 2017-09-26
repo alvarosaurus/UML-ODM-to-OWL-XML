@@ -5,7 +5,7 @@ from odm2owl.OWLSinkXSLT import OWLSinkXSLT
 
 iri = ODMModel.ns['base']
 profilePath = "profiles/ODM1.xmi"
-templatePath = "src/odm2owl/templates/RDF.xslt"
+templatePath = "src/templates/RDF.xslt"
 
 try:
     if len(sys.argv) != 3:

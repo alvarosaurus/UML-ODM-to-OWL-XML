@@ -20,7 +20,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
     classesModelPath = "testdata/classes_and_properties.xmi"
     inheritanceModelPath = "testdata/inheritance.xmi"
     iri = ODMModel.ns['base']
-    templatePath = "../src/odm2owl/templates/RDF.xslt"
+    templatePath = "../src/templates/RDF.xslt"
     savePath = "/tmp/test.owl"
 
     def tearDown(self):
@@ -143,10 +143,10 @@ class test_OWLSinkXSLT(unittest.TestCase):
 
         # check that the OWLtree contains all ObjectPropertyDomains
         self.assertEqual(
-			1,
-			len(owl.findall(ODMModel.path('owl:ObjectProperty', 'rdfs:domain'))),
-			"Wrong number of object property domains"
-			)
+            1,
+            len(owl.findall(ODMModel.path('owl:ObjectProperty', 'rdfs:domain'))),
+            "Wrong number of object property domains"
+            )
         # check that the OWLtree contains all ObjectPropertyRanges
         self.assertEqual(
             1,
@@ -312,7 +312,8 @@ class test_OWLSinkXSLT(unittest.TestCase):
         self.assertTrue(child is not None, "Child class not found")
 
         # check that child_1 is subclass of parent
-        superClasses = owl.findall(ODMModel.path('owl:Class', 'rdfs:subClassOf', startWith='descendant'))
+        superClasses = owl.findall(
+            ODMModel.path('owl:Class', 'rdfs:subClassOf', startWith='descendant'))
         self.assertEqual(1, len(superClasses), "Parent class not found")
 
         # check that superClass of 'child_1' is 'parent'

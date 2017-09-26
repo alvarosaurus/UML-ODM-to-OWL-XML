@@ -1,7 +1,7 @@
 """
 Test save OWL to file.
-Using the ontology profile by Gaševic, D., Djuric, D. and Devedžic, V., 2009
 
+Using the ontology profile by Gaševic, D., Djuric, D. and Devedžic, V., 2009
 Created on 13 Sep 2017
 
 @author: Alvaro Ortiz Troncoso
@@ -21,7 +21,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
     classesModelPath = "testdata/classes_and_properties_standard.xmi"
     inheritanceModelPath = "testdata/inheritance.xmi"
     iri = ODMModel.ns['base']
-    templatePath = "../src/odm2owl/templates/RDF.xslt"
+    templatePath = "../src/templates/RDF.xslt"
     savePath = "/tmp/test.owl"
 
     def tearDown(self):
@@ -144,10 +144,10 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
 
         # check that the OWLtree contains all ObjectPropertyDomains
         self.assertEqual(
-			1,
-			len(owl.findall(ODMModel.path('owl:ObjectProperty', 'rdfs:domain'))),
-			"Wrong number of object property domains"
-			)
+            1,
+            len(owl.findall(ODMModel.path('owl:ObjectProperty', 'rdfs:domain'))),
+            "Wrong number of object property domains"
+            )
         # check that the OWLtree contains all ObjectPropertyRanges
         self.assertEqual(
             1,
@@ -313,7 +313,8 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
         self.assertTrue(child is not None, "Child class not found")
 
         # check that child_1 is subclass of parent
-        superClasses = owl.findall(ODMModel.path('owl:Class', 'rdfs:subClassOf', startWith='descendant'))
+        superClasses = owl.findall(
+            ODMModel.path('owl:Class', 'rdfs:subClassOf', startWith='descendant'))
         self.assertEqual(1, len(superClasses), "Parent class not found")
 
         # check that superClass of 'child_1' is 'parent'

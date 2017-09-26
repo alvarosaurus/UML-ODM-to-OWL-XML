@@ -105,7 +105,7 @@ class test_ODMModel(unittest.TestCase):
             model.ontology.getroot().get('OntClass'),
             "Wrong value for attribute OWLClass"
             )
-        
+
         self.assertEqual(
             '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
             model.ontology.getroot().get('DatatypeProperty'),
