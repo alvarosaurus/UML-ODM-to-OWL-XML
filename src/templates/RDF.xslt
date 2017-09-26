@@ -55,8 +55,11 @@
   <!-- Transform the elements of the model -->
   <xsl:template match="UML:Namespace.ownedElement">
       <xsl:apply-templates select="UML:Class" mode="OntClass"/>
-      <xsl:apply-templates select="UML:AssociationClass|UML:Class" mode="ObjectProperty"/>
+      <xsl:apply-templates select="UML:AssociationClass" mode="ObjectProperty"/>
+      <!--
+      <xsl:apply-templates select="UML:Class" mode="ObjectProperty"/>
       <xsl:apply-templates select="UML:Class" mode="DatatypeProperty"/>
+      -->
   </xsl:template>
 
 </xsl:stylesheet>

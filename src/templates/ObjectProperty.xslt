@@ -7,8 +7,8 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xml="http://www.w3.org/XML/1998/namespace"
 >
-  <!-- Transform UML:Class or UML:AssociationClass into OWLObjectProperty if stereotype is ObjectProperty-->
-  <xsl:template match="UML:Class|UML:AssociationClass" mode="ObjectProperty">
+  <!-- Transform UML:AssociationClass into OWLObjectProperty if stereotype is ObjectProperty-->
+  <xsl:template match="UML:AssociationClass" mode="ObjectProperty">
       <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
       <!-- Reference to the domain class -->
       <xsl:variable name="domain.idref" select="UML:Classifier.feature/UML:Attribute[@name='domain']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
@@ -25,4 +25,24 @@
       </xsl:if>
 
   </xsl:template>
+
+  <!-- Transform UML:Class into OWLObjectProperty if stereotype is ObjectProperty-->
+  <xsl:template match="UML:Class" mode="ObjectProperty">
+      <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
+      <!-- Reference to the domain class -->
+      <xsl:variable name="domain.idref" select="UML:Classifier.feature/UML:Attribute[@name='domain']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
+      <!-- Reference to the range class -->
+      <xsl:variable name="range.idref" select="UML:Classifier.feature/UML:Attribute[@name='range']/UML:StructuralFeature.type/UML:Class/@xmi.idref" />
+      
+      <!--The UML:AssociationClass should point to the ObjectProperty sterotype in the profile-->
+      <xsl:if test="$xmi.id = $ObjectProperty">
+        <owl:ObjectProperty rdf:about="{$ns}#{@name}">
+            <rdfs:domain rdf:resource="{$ns}#{//UML:Class[@xmi.id=$domain.idref]/@name}"/>
+            <rdfs:range rdf:resource="{$ns}#{//UML:Class[@xmi.id=$range.idref]/@name}"/>
+        </owl:ObjectProperty>
+
+      </xsl:if>
+
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -1,27 +1,44 @@
-<rdf:RDF xmlns="http://example.org/ontologies/test" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:UML="org.omg.xmi.namespace.UML">
-  <owl:Ontology rdf:about="http://example.org/ontologies/test"/>
-  <owl:Class rdf:about="http://example.org/ontologies/test#TestClass_1"/>
-  <owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_1">
-    <rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_1"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_2">
-    <rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_1"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:DatatypeProperty>
-  <owl:Class rdf:about="http://example.org/ontologies/test#TestClass_2"/>
-  <owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_3">
-    <rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_2"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_4">
-    <rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_2"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_5">
-    <rdfs:domain rdf:resource="http://example.org/ontologies/test#property_1"/>
-  </owl:DatatypeProperty>
-  <owl:ObjectProperty rdf:about="http://example.org/ontologies/test#hasProperty">
-    <rdfs:domain rdf:resource="http://example.org/ontologies/test#"/>
-    <rdfs:range rdf:resource="http://example.org/ontologies/test#"/>
-  </owl:ObjectProperty>
+<rdf:RDF 
+xmlns="http://example.org/ontologies/test" 
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+xmlns:owl="http://www.w3.org/2002/07/owl#" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+xmlns:UML="org.omg.xmi.namespace.UML">
+	
+	
+<owl:Ontology rdf:about="http://example.org/ontologies/test"/>
+	
+<owl:Class rdf:about="http://example.org/ontologies/test#TestClass_1"/>
+	
+	
+<owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_1">
+	<rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_1"/>
+	<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+	
+<owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_2">
+<rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_1"/>
+<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty><owl:Class rdf:about="http://example.org/ontologies/test#TestClass_2"/>
+	
+<owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_3">
+<rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_2"/>
+<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+</owl:DatatypeProperty>
+	
+<owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#attribute_4">
+<rdfs:domain rdf:resource="http://example.org/ontologies/test#TestClass_2"/>
+</owl:DatatypeProperty>
+	
+<owl:ObjectProperty rdf:about="http://example.org/ontologies/test#hasProperty">
+<rdfs:domain rdf:resource="http://example.org/ontologies/test#"/>
+<rdfs:range rdf:resource="http://example.org/ontologies/test#"/>
+</owl:ObjectProperty>
+	
+<owl:DatatypeProperty rdf:about="http://example.org/ontologies/test#property_1">
+<rdfs:domain rdf:resource="http://example.org/ontologies/test#domain"/>
+<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+	
 </rdf:RDF>

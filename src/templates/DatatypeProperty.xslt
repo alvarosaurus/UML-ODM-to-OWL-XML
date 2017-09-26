@@ -10,12 +10,16 @@
 	<!--Transform UML:Class with stereotype DatatypeProperty into DatatypeProperty-->
     <xsl:template match="UML:Class" mode="DatatypeProperty">
         <xsl:variable name="xmi.id" select="substring-after( UML:ModelElement.stereotype/UML:Stereotype/@href, '#')"/>
+	    <!-- Reference to the range data type -->
+	    <xsl:variable name="datatype.href" select="substring-after( UML:Classifier.feature/UML:Attribute/UML:StructuralFeature.type/UML:DataType/@href, '#' )" />
 
         <!--The UML:Class should point to the DatatypeProperty sterotype in the profile-->
         <xsl:if test="$xmi.id = $DatatypeProperty">
           <owl:DatatypeProperty rdf:about="{$ns}#{@name}">
-              <rdfs:domain rdf:resource="{$ns}#domain"/>
-              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#range"/>
+          	<rdfs:domain rdf:resource="{$ns}#domain"/>
+        	<xsl:call-template name="range">
+        		<xsl:with-param name="datatype.href" select="$datatype.href" />
+        	</xsl:call-template>
           </owl:DatatypeProperty>
         </xsl:if>
     </xsl:template>
@@ -28,6 +32,15 @@
 
       <owl:DatatypeProperty rdf:about="{$ns}#{@name}">
         <rdfs:domain rdf:resource="{$ns}#{$className}"/>
+        <xsl:call-template name="range">
+        	<xsl:with-param name="datatype.href" select="$datatype.href" />
+        </xsl:call-template>
+      </owl:DatatypeProperty>
+    </xsl:template>
+
+	<!-- Range with built-in data type -->    
+    <xsl:template name="range">
+    	<xsl:param name="datatype.href" />
         <xsl:choose>
           <xsl:when test="$datatype.href=$stringType">
             <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -45,7 +58,6 @@
             <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
           </xsl:when>
       </xsl:choose>
-      </owl:DatatypeProperty>
-
     </xsl:template>
+    
 </xsl:stylesheet>

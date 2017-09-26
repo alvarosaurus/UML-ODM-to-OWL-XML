@@ -26,9 +26,8 @@ class test_OWLSinkXSLT(unittest.TestCase):
     def tearDown(self):
         """Teardown the test files."""
         # delete the saved OWL file if present
-#        if os.path.isfile(test_OWLSinkXSLT.savePath):
-#            os.remove(test_OWLSinkXSLT.savePath)
-        pass
+        if os.path.isfile(test_OWLSinkXSLT.savePath):
+            os.remove(test_OWLSinkXSLT.savePath)
 
     def test_create(self):
         """
@@ -96,7 +95,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # instantiate OWLSink object and apply transformation
         sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
         owl = sink.transform(model)
-
+        
         # check that the OWLtree contains all classes
         self.assertEqual(
             2,
@@ -290,6 +289,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # instantiate OWLSink object and apply transformation
         sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
         owl = sink.transform(model)
+        print(owl)
 
         # check that programs runs this ontologyIRI
         self.assertFalse(
