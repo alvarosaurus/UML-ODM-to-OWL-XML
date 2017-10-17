@@ -95,7 +95,7 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # instantiate OWLSink object and apply transformation
         sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
         owl = sink.transform(model)
-        
+
         # check that the OWLtree contains all classes
         self.assertEqual(
             2,
@@ -289,7 +289,6 @@ class test_OWLSinkXSLT(unittest.TestCase):
         # instantiate OWLSink object and apply transformation
         sink = OWLSinkXSLT(test_OWLSinkXSLT.templatePath)
         owl = sink.transform(model)
-        print(owl)
 
         # check that programs runs this ontologyIRI
         self.assertFalse(

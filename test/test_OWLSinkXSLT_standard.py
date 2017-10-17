@@ -7,7 +7,6 @@ Created on 13 Sep 2017
 @author: Alvaro Ortiz Troncoso
 """
 import unittest
-import os.path
 from odm2owl.OWLSinkXSLT import OWLSinkXSLT
 from odm2owl.ODMSourceXMI import ODMSourceXMI
 from odm2owl.ODMModel import ODMModel
@@ -40,8 +39,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
         sink = OWLSinkXSLT(test_OWLSinkXSLT_standard.templatePath)
         self.assertFalse(sink is None, "Could not create OWLSinkXSLT object")
 
-
-    @unittest.skip("needs more work") 
+    @unittest.skip("needs more work")
     def test_Classes(self):
         """
         Test whether attributes have been added to the OWL tree.
@@ -67,7 +65,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
             "Wrong number of classes"
             )
 
-    @unittest.skip("needs more work") 
+    @unittest.skip("needs more work")
     def test_ObjectProperties(self):
         """Test load a ODM model (classes and properties model)."""
         model = ODMSourceXMI().loadModel(
@@ -88,7 +86,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
             "Wrong number of object properties"
             )
 
-    @unittest.skip("needs more work") 
+    @unittest.skip("needs more work")
     def test_ObjectPropertiesDomainsAndRanges(self):
         """
         Test domains and ranges of object properties.
@@ -119,7 +117,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
             "Wrong number of object property ranges"
             )
 
-    @unittest.skip("needs more work") 
+    @unittest.skip("needs more work")
     def test_DataProperties(self):
         """Test load data properties."""
         # load a ODM model (classes and properties model)
@@ -140,7 +138,7 @@ class test_OWLSinkXSLT_standard(unittest.TestCase):
             "Wrong number of data properties"
             )
 
-    @unittest.skip("needs more work") 
+    @unittest.skip("needs more work")
     def test_DataPropertiesDomainsAndRanges(self):
         """Test domains and ranges of data properties."""
         # load a ODM model (classes and properties model)
