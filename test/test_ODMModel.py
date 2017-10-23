@@ -58,7 +58,7 @@ class test_ODMModel(unittest.TestCase):
             )
         name = 'DatatypeProperty'
         self.assertEqual(
-            '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
+            '127-0-1-1-2d748986:15eb8152e70:-8000:00000000000013C8',
             model.stereotypes[name],
             "Wrong xmi.id for stereotype %s" % name
             )
@@ -107,7 +107,7 @@ class test_ODMModel(unittest.TestCase):
             )
 
         self.assertEqual(
-            '127-0-1-1--7cb14c61:15e7a3e4e85:-8000:0000000000000A62',
+            '127-0-1-1-2d748986:15eb8152e70:-8000:00000000000013C8',
             model.ontology.getroot().get('DatatypeProperty'),
             "Wrong value for attribute DataType"
             )

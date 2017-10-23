@@ -181,4 +181,8 @@ class ODMModel():
 
     def __repr__(self):
         """Represent the ontology tree in the model as a String."""
-        return etree.tostring(self.ontology, pretty_print=True)
+        return str(etree.tostring(self.ontology, pretty_print=True))
+
+    def __str__(self):
+        """Represent the ontology tree in the model as a String."""
+        return self.__repr__()

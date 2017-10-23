@@ -26,6 +26,8 @@
   <xsl:variable name="OntClass" select="/XMI/@OntClass" />
   <xsl:variable name="ObjectProperty" select="/XMI/@ObjectProperty" />
   <xsl:variable name="DatatypeProperty" select="/XMI/@DatatypeProperty" />
+  <xsl:variable name="domain" select="/XMI/@domain" />
+  <xsl:variable name="range" select="/XMI/@range" />
 
   <!-- Define datatypes as global variables -->
   <xsl:variable name="stringType" select="/XMI/@string" />
